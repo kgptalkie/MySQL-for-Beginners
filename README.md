@@ -95,6 +95,11 @@ Each script says at the top what it removes and rebuilds, so read the first line
 
 Section 2 covers concepts only, so it has no files.
 
+## Cheat sheets
+
+The `cheatsheets` folder has one PDF per section (Sections 2 to 20; a long section comes in parts). Each one lists
+the section's statements lesson by lesson, as typed in the notebooks, with the result the lesson got.
+
 ## The data
 
 The employee database describes a company that does not exist: every name, number and date in it is made up. Money
