@@ -1,0 +1,68 @@
+-- S10-08-practice-solution.sqlnb, as plain SQL for MySQL Workbench or any SQL tool.
+-- The same cells as the notebook, in the same order. Run one statement at a time, or the whole script.
+
+-- # Practice solution: Department Payroll Analysis
+--
+-- Each answer is above its query. Run the cells one at a time, from the top.
+
+USE my_db;
+
+-- ## Task 1. Headcount and payroll
+--
+-- 9 rows, not 10: Research (70) has no employees, so it makes no group. Engineering (20) is first, 142 people and 12902000.00; Administration (10) is last, 15 people and 943000.00. Legal (90) has fewer people (12) but a larger payroll (1199000.00). ORDER BY can use the alias payroll, because it is sorted after SELECT.
+
+SELECT department_id,
+  COUNT(*) AS headcount,
+  SUM(salary_usd) AS payroll
+FROM employees
+GROUP BY department_id
+ORDER BY payroll DESC;
+
+-- ## Task 2. Departments with a high average salary
+--
+-- 4 departments: Legal (90) 99917, Engineering (20) 90859, Finance (30) 74556 and Marketing (40) 66652. Sales (50) just misses at 64563. The filter is on a group's average, so it goes in HAVING, after GROUP BY; WHERE cannot hold AVG.
+
+SELECT department_id,
+  COUNT(*) AS headcount,
+  ROUND(AVG(salary_usd)) AS avg_salary
+FROM employees
+GROUP BY department_id
+HAVING AVG(salary_usd) > 65000
+ORDER BY avg_salary DESC;
+
+-- ## Task 3. NULL and the average commission
+--
+-- 95 people, 87 commission values, total 322800.00. avg_commission is 3710.34 and avg_commission_all is 3397.89. AVG skips NULL: it divides 322800.00 by the 87 values that are there. COALESCE turns the 8 missing ones into 0, so the same total is divided by all 95. The 7 zero commissions count in both, because 0.00 is a value, not NULL. Which average is right is a business decision: is a missing commission "none" or "unknown"?
+
+SELECT COUNT(*) AS headcount,
+  COUNT(commission_usd) AS with_commission,
+  SUM(commission_usd) AS total_commission,
+  ROUND(AVG(commission_usd), 2) AS avg_commission,
+  ROUND(AVG(COALESCE(commission_usd, 0)), 2) AS avg_commission_all
+FROM employees
+WHERE department_id = 50;
+
+-- ## Task 4. Long-serving staff per department
+--
+-- 3 departments: Engineering (20) 46 people and 4470500.00, Marketing (40) 16 and 1154000.00, Sales (50) 30 and 2228000.00. WHERE removes rows before the groups are made: Legal (90) and Operations (100) hired nobody before 2003, so they never become a group. HAVING then removes the groups with fewer than 10: Administration (8), Finance (9), Human Resources (7) and Customer Support (9).
+
+SELECT department_id,
+  COUNT(*) AS long_serving,
+  SUM(salary_usd) AS payroll
+FROM employees
+WHERE hire_date < '2003-01-01'
+GROUP BY department_id
+HAVING COUNT(*) >= 10;
+
+-- ## Task 5. The share of payroll paid to high earners
+--
+-- 9 rows: Legal (90) first at 55.4, Engineering (20) 28.6, Administration (10) 25.5, and Customer Support (80) last at 3.4. The CASE gives each row its salary when it is 100000 or more and 0 otherwise, so the SUM adds only the high salaries. The divisor is the whole payroll. It can never be zero here (every group has at least one row, and every salary is above 0), so no NULLIF is needed; when a divisor could be zero, wrap it in NULLIF.
+
+SELECT department_id,
+  SUM(salary_usd) AS payroll,
+  ROUND(100 * SUM(CASE WHEN salary_usd >= 100000
+    THEN salary_usd ELSE 0 END)
+    / SUM(salary_usd), 1) AS pct_payroll_high
+FROM employees
+GROUP BY department_id
+ORDER BY pct_payroll_high DESC;

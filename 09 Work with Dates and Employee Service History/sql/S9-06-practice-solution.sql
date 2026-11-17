@@ -1,0 +1,65 @@
+-- S9-06-practice-solution.sqlnb, as plain SQL for MySQL Workbench or any SQL tool.
+-- The same cells as the notebook, in the same order. Run one statement at a time, or the whole script.
+
+-- # Practice solution: Hiring Dates and Years of Service
+--
+-- Each answer is above its query. Run the cells one at a time, from the top. The fixed date '2005-12-31' is the last day of our data.
+
+USE my_db;
+
+-- ## Task 1. Sales hired in 2003
+--
+-- 12 people, Tunde Bakare first (2003-02-03) and Sara Lindgren last (2003-11-03). The boundary is half-open: on or after the first day of 2003, and before the first day of 2004. hire_date is a DATE with no time, so BETWEEN '2003-01-01' AND '2003-12-31' finds the same 12 here; the half-open form is the habit that also works on DATETIME and TIMESTAMP columns.
+
+SELECT first_name, last_name, hire_date
+FROM employees
+WHERE department_id = 50
+  AND hire_date >= '2003-01-01'
+  AND hire_date < '2004-01-01'
+ORDER BY hire_date;
+
+-- ## Task 2. Completed years of service
+--
+-- 10 people, from Omar Farouk (1972 days, 5 completed years) to Kofi Owusu (180 days, 0 years). TIMESTAMPDIFF with YEAR counts only completed years. Tunde Bakare has 1062 days: divided by 365 that is about 2.9, which would round to 3, but his third year is not complete until 2006-02-03, so it is 2.
+
+SELECT first_name, last_name, hire_date,
+  DATEDIFF('2005-12-31', hire_date) AS days_since_hire,
+  TIMESTAMPDIFF(YEAR, hire_date, '2005-12-31') AS service_years
+FROM employees
+WHERE employee_id BETWEEN 1036 AND 1045
+ORDER BY hire_date;
+
+-- ## Task 3. Hire dates for a report
+--
+-- 10 rows, Omar Farouk first: Monday, 07 August 2000 and Aug 2000. %W is the weekday name, %d the day with two digits, %M the month name, %Y the year with four digits, %b the short month name. Every one of the ten was hired on a Monday.
+
+SELECT first_name, last_name,
+  DATE_FORMAT(hire_date, '%W, %d %M %Y') AS hired_on,
+  DATE_FORMAT(hire_date, '%b %Y') AS month_year
+FROM employees
+WHERE employee_id BETWEEN 1036 AND 1045
+ORDER BY hire_date;
+
+-- ## Task 4. The three-year milestone
+--
+-- 10 rows: 5 Reached (Omar Farouk to Valentina Cruz, whose three years fell on 2005-07-01) and 5 Not yet (Tunde Bakare's falls on 2006-02-03). DATE_ADD moves the hire date three years on, and CASE compares that date with the last day of our data.
+
+SELECT first_name, last_name, hire_date,
+  DATE_ADD(hire_date, INTERVAL 3 YEAR) AS three_years_on,
+  CASE
+    WHEN DATE_ADD(hire_date, INTERVAL 3 YEAR) <= '2005-12-31'
+      THEN 'Reached'
+    ELSE 'Not yet'
+  END AS milestone
+FROM employees
+WHERE employee_id BETWEEN 1036 AND 1045
+ORDER BY hire_date;
+
+-- ## Task 5. Every scan on one day
+--
+-- 6 scans, 13 to 18, from 08:55:31 to Isabel Costa's 17:36:22 at the side door. On or after the start of 1 December, and before the start of the next day, which DATE_ADD makes. BETWEEN '2005-12-01' AND '2005-12-01' finds no rows at all, because a date with no time means midnight, the very start of the day.
+
+SELECT scan_id, employee_id, door, scanned_at
+FROM badge_scans
+WHERE scanned_at >= '2005-12-01'
+  AND scanned_at < DATE_ADD('2005-12-01', INTERVAL 1 DAY);

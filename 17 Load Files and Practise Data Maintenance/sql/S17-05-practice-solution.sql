@@ -1,0 +1,86 @@
+-- S17-05-practice-solution.sqlnb, as plain SQL for MySQL Workbench or any SQL tool.
+-- The same cells as the notebook, in the same order. Run one statement at a time, or the whole script.
+
+-- # Practice solution: Populate and Maintain the Employee Training Table
+--
+-- Each answer is above its queries. Run the cells one at a time, from the top: every write is followed by a check. Needs training_db as 17.3 leaves it (or reset/S17-04-start.sql).
+
+USE training_db;
+
+-- ## Task 1. Load the three rejected rows, fixed
+--
+-- 3 rows affected. The check gives 8 rows: all eight Sales Coordinators, 1045 to 1400, with 1233 on 2005-06-21 and 1310 on 2005-06-30. The three new rows get training_id 33, 34 and 35. One INSERT with three rows in VALUES is the Section 4 way; training_id is left out, so AUTO_INCREMENT fills it.
+
+INSERT INTO employee_training
+(employee_id, course_name, completed_on, hours)
+VALUES
+(1233, 'Negotiation Skills', '2005-06-21', 4),
+(1310, 'Negotiation Skills', '2005-06-30', 4),
+(1315, 'Negotiation Skills', '2005-06-22', 4);
+
+SELECT employee_id, completed_on
+FROM employee_training
+WHERE course_name = 'Negotiation Skills'
+ORDER BY employee_id;
+
+-- ## Task 2. Data Privacy for every Training Coordinator
+--
+-- 4 rows affected: Nia Thompson (1050), Caleb Ibekwe (1112), Beatriz Dahl (1187) and Ebony Odhiambo (1265). The count is 16: Legal's 12 from 17.1 and these 4. The SELECT reads my_db, the INSERT writes training_db; the SELECT list gives two values per row for the two columns named after the table.
+
+INSERT INTO employee_training
+(employee_id, course_name)
+SELECT employee_id, 'Data Privacy' AS course_name
+FROM my_db.employees
+WHERE job_title = 'Training Coordinator';
+
+SELECT COUNT(*) AS assigned
+FROM employee_training
+WHERE course_name = 'Data Privacy';
+
+-- ## Task 3. Record three completions
+--
+-- 3 rows affected (3 matched, 3 changed). The check gives the same 3 rows: 1153, 1204, 1266, each 2005-12-12 and 2. The WHERE names the course too: an employee may hold more than one course.
+
+UPDATE employee_training
+SET completed_on = '2005-12-12', hours = 2
+WHERE course_name = 'Data Privacy'
+AND employee_id IN (1153, 1204, 1266);
+
+SELECT employee_id, completed_on, hours
+FROM employee_training
+WHERE course_name = 'Data Privacy'
+AND completed_on IS NOT NULL;
+
+-- ## Task 4. A status column
+--
+-- ALTER TABLE: 0 rows affected, and every row now reads 'open' (the default fills the existing rows, so NOT NULL holds). The UPDATE changes 17 rows: 6 First Aid + 8 Negotiation Skills + 3 Data Privacy.
+
+ALTER TABLE employee_training
+ADD COLUMN status VARCHAR(10)
+NOT NULL DEFAULT 'open';
+
+UPDATE employee_training
+SET status = 'done'
+WHERE completed_on IS NOT NULL;
+
+-- ## Task 5. Remove one row
+--
+-- The SELECT shows 1 row: training_id 11, 1464, Data Privacy, no date, status open. The DELETE says 1 row affected. Looking first with the same WHERE is the Section 4 habit: you see exactly what will go.
+
+SELECT *
+FROM employee_training
+WHERE employee_id = 1464
+AND course_name = 'Data Privacy';
+
+DELETE FROM employee_training
+WHERE employee_id = 1464
+AND course_name = 'Data Privacy';
+
+-- ## Task 6. Check the whole table
+--
+-- 4 rows: Data Privacy done 3, Data Privacy open 12, First Aid done 6, Negotiation Skills done 8. 29 rows in all: 23 at the start + 3 + 4 - 1. training_id 11 stays unused; IDs are labels, not counts.
+
+SELECT course_name, status, COUNT(*) AS people
+FROM employee_training
+GROUP BY course_name, status
+ORDER BY course_name, status;

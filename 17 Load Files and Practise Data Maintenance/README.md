@@ -5,5 +5,6 @@ Needs the employee database `my_db` from Section 5. Lesson 17.2 shows how to cop
 - `S17-NN-*.sqlnb`: the notebook of lesson 17.NN, in the order the lesson runs it.
 - `reset/S17-NN-start.sql`: rebuilds `training_db` as it is when lesson 17.NN starts (only if yours no longer matches the video).
 - `S17-04-practice-tasks.sqlnb`: try the practice first; `S17-05-practice-solution.sqlnb` has the answers.
+- `sql/`: every notebook in this folder as a plain `.sql` file, for MySQL Workbench or any other SQL tool.
 
 [Back to the course README](../README.md)

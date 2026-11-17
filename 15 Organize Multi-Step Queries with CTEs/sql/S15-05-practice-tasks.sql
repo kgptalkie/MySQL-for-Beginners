@@ -1,0 +1,32 @@
+-- S15-05-practice-tasks.sqlnb, as plain SQL for MySQL Workbench or any SQL tool.
+-- The same cells as the notebook, in the same order. Run one statement at a time, or the whole script.
+
+-- # Practice: Explain Each Step of a Query
+--
+-- Build one department summary in steps, with a named step (a CTE) for each part. Before you run each step, write down in one sentence what one row of it means, and how many rows you expect. Use WITH, joins, COUNT, SUM, ROUND and GROUP BY. Nothing here changes a table. If my_db is not on your server, run my_db_setup.sql first.
+
+USE my_db;
+
+-- ## Task 1. The employee step
+--
+-- Write a CTE named emp_stats with department_id, people (how many employees) and payroll (their salaries added up), one row per department. Run it on its own with SELECT * FROM emp_stats. What does one row mean?
+
+-- Write your query here.
+
+-- ## Task 2. The assignment step
+--
+-- Write a CTE named assign_stats with department_id and assignments: how many project assignments the people of each department have (employee_projects joined to employees, grouped by the employee's department). Run it on its own. What does one row mean?
+
+-- Write your query here.
+
+-- ## Task 3. The department summary
+--
+-- Put both steps in one WITH and join them to departments, so that every department is in the result, even one with no employees: department_name, people, payroll, assignments. Alphabetical order. Then say what one row of the result means.
+
+-- Write your query here.
+
+-- ## Task 4. Busy departments
+--
+-- With the same two steps, list the departments whose people have more than 1.5 assignments each on average: department_name, people, assignments and per_person (assignments divided by people, rounded to 2 decimals). Highest per_person first.
+
+-- Write your query here.

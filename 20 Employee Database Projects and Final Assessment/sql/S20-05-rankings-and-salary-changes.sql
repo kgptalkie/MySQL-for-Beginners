@@ -1,0 +1,50 @@
+-- S20-05-rankings-and-salary-changes.sqlnb, as plain SQL for MySQL Workbench or any SQL tool.
+-- The same cells as the notebook, in the same order. Run one statement at a time, or the whole script.
+
+-- # Questions 5 and 6: department rankings and salary increases
+--
+-- Expected (from the plan): 9 departments with an average (Research has nobody); one raise per salary change after the first.
+
+USE my_db;
+
+WITH dept AS (
+    SELECT d.department_name,
+    ROUND(AVG(e.salary_usd), 2) AS avg_salary
+    FROM departments AS d
+    JOIN employees AS e
+    ON e.department_id = d.department_id
+    GROUP BY d.department_name
+)
+SELECT department_name, avg_salary,
+RANK() OVER (ORDER BY avg_salary DESC) AS salary_rank
+FROM dept
+ORDER BY salary_rank;
+
+WITH changes AS (
+    SELECT employee_id, effective_from, salary_usd,
+    salary_usd - LAG(salary_usd)
+    OVER (PARTITION BY employee_id ORDER BY effective_from) AS raise_usd
+    FROM salary_history
+)
+SELECT employee_id, effective_from, salary_usd, raise_usd
+FROM changes
+WHERE raise_usd IS NOT NULL
+ORDER BY raise_usd DESC, employee_id
+LIMIT 5;
+
+WITH changes AS (
+SELECT employee_id, effective_from, salary_usd,
+salary_usd - LAG(salary_usd)
+OVER (PARTITION BY employee_id ORDER BY effective_from) AS raise_usd
+FROM salary_history
+),
+ranked AS (
+    SELECT employee_id, effective_from, raise_usd,
+    RANK() OVER (ORDER BY raise_usd DESC) AS raise_rank
+    FROM changes
+    WHERE raise_usd IS NOT NULL
+)
+SELECT employee_id, effective_from, raise_usd, raise_rank
+FROM ranked
+WHERE raise_rank <= 3
+ORDER BY raise_rank, employee_id;

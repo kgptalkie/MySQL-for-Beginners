@@ -1,0 +1,32 @@
+-- S13-05-practice-tasks.sqlnb, as plain SQL for MySQL Workbench or any SQL tool.
+-- The same cells as the notebook, in the same order. Run one statement at a time, or the whole script.
+
+-- # Practice: Combine Salary Records from Two Tables
+--
+-- Two tables keep a record of the same salary changes. employee_change_log keeps every change to a person (change_type 'salary', 'title' or 'department'); for a salary change, change_date is the day and new_value the new salary. salary_history keeps every salary a person has had, from the day they were hired: effective_from and salary_usd. Use what you know: UNION ALL, UNION, ORDER BY on the combined result, and INNER JOIN with ON. One statement per task. Nothing here changes a table. If my_db is not on your server, run my_db_setup.sql first.
+
+USE my_db;
+
+-- ## Task 1. Stack both batches for Isabel Costa (1037)
+--
+-- From employee_change_log, her salary changes (change_type 'salary'): change_date and new_value. From salary_history: effective_from and salary_usd. Keep every row of both. Name the two columns salary_date and salary.
+
+-- Write your query here.
+
+-- ## Task 2. One salary timeline for Isabel
+--
+-- The same two batches, but each salary step only once, oldest first. Then explain in one sentence: should the repeated rows of Task 1 stay? Why or why not?
+
+-- Write your query here.
+
+-- ## Task 3. Two people at once
+--
+-- The timeline of Task 2 for Isabel Costa (1037) and Valentina Cruz (1045) together, with employee_id as the first column. Order by employee_id, then salary_date.
+
+-- Write your query here.
+
+-- ## Task 4. Which changes do both tables record?
+--
+-- For Isabel, put each salary change of the change log beside the matching salary_history row (same employee, same date): change_date, new_value and salary_usd side by side. How is this different from Task 1?
+
+-- Write your query here.

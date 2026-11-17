@@ -4,5 +4,6 @@ Needs the employee database `my_db` from Section 5.
 
 - `S8-NN-*.sqlnb`: the notebook of lesson 8.NN, in the order the lesson runs it.
 - `S8-07-practice-tasks.sqlnb`: try the practice first; `S8-07-practice-solution.sqlnb` has the answers.
+- `sql/`: every notebook in this folder as a plain `.sql` file, for MySQL Workbench or any other SQL tool.
 
 [Back to the course README](../README.md)

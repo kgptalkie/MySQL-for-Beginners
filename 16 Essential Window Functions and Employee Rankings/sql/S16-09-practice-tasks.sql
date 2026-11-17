@@ -1,0 +1,32 @@
+-- S16-09-practice-tasks.sqlnb, as plain SQL for MySQL Workbench or any SQL tool.
+-- The same cells as the notebook, in the same order. Run one statement at a time, or the whole script.
+
+-- # Practice: Rankings and Salary History
+--
+-- Two rankings and two looks at one person's salary history. Before you run each query, say how many rows you expect. Use WITH, DENSE_RANK, LAG, LEAD, OVER, PARTITION BY and ORDER BY. Nothing here changes a table. If my_db is not on your server, run my_db_setup.sql first.
+
+USE my_db;
+
+-- ## Task 1. Top three salary levels per department
+--
+-- For Sales (50), Customer Support (80) and Operations (100), give every employee a salary level inside their own department with DENSE_RANK, highest salary = level 1, in a CTE named levels. Keep levels 1 to 3: department_id, first_name, last_name, salary_usd and tier, by department, then level. How many rows do you expect?
+
+-- Write your query here.
+
+-- ## Task 2. Distinct levels and a tie
+--
+-- In Human Resources (60) alone, keep the top five distinct salary levels: employee_id, first_name, last_name, salary_usd and tier, by level, then employee_id. How many people stand on five levels? What would RANK give?
+
+-- Write your query here.
+
+-- ## Task 3. Paolo Novak's raises
+--
+-- Paolo Novak (employee 1055) is a Sales Manager. List his salary records (salary_history) in date order with the previous salary (prev_salary) and the raise from it (raise_usd). Which raise is the biggest?
+
+-- Write your query here.
+
+-- ## Task 4. When each salary changed next
+--
+-- For the same records, show the date of the next change (next_change) and the next salary (next_salary). Which row has no next change, and why?
+
+-- Write your query here.

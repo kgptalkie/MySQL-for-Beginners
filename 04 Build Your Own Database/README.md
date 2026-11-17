@@ -6,5 +6,6 @@ Builds your own small databases (`campus_lab`, `practice_lab`, `library_lab`); n
 - `tasks/`: six short practice tasks to try between lessons (in `practice_lab`).
 - `library_lab_challenge` and `library_lab_solution`: the build challenge (4.20) and its solution (4.21).
 - `reset/S4-NN-start.sql`: rebuilds the practice databases as they are when lesson 4.NN starts.
+- `sql/`: every other notebook in this folder as a plain `.sql` file, for MySQL Workbench or any other SQL tool (the `.sql` files listed above stay where they are).
 
 [Back to the course README](../README.md)

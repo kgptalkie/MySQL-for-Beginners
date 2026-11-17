@@ -1,0 +1,35 @@
+-- S14-04-correlated-subqueries.sqlnb, as plain SQL for MySQL Workbench or any SQL tool.
+-- The same cells as the notebook, in the same order. Run one statement at a time, or the whole script.
+
+USE my_db;
+
+SELECT department_id,
+ROUND(AVG(salary_usd), 2) AS dept_avg
+FROM employees
+GROUP BY department_id;
+
+SELECT e.first_name, e.department_id, e.salary_usd,
+  (SELECT ROUND(AVG(c.salary_usd), 2)
+    FROM employees AS c
+    WHERE c.department_id = e.department_id) AS dept_avg
+FROM employees AS e
+WHERE e.employee_id IN (1001, 1005, 1036, 1037,
+    1039, 1044, 1045);
+
+SELECT e.first_name, e.department_id, e.salary_usd
+FROM employees AS e
+WHERE e.employee_id IN (1001, 1005, 1036, 1037,
+1039, 1044, 1045)
+AND e.salary_usd > (
+    SELECT AVG(c.salary_usd)
+    FROM employees AS c
+    WHERE c.department_id = e.department_id
+);
+
+SELECT COUNT(*) AS above_dept_avg
+FROM employees AS e
+WHERE e.salary_usd > (
+    SELECT AVG(c.salary_usd)
+    FROM employees AS c
+    WHERE c.department_id = e.department_id
+);

@@ -69,6 +69,7 @@ Each script says at the top what it removes and rebuilds, so read the first line
 | `S6-02-aliases.sqlnb` | The notebook of lesson 6.2, in the order the lesson runs it |
 | `S6-07-practice-tasks.sqlnb` | Practice questions, with an empty cell under each one. Try these first |
 | `S6-07-practice-solution.sqlnb` | The answers to the same questions |
+| `sql/S6-02-aliases.sql` | The same notebook as a plain SQL file, in the section's `sql` folder, for MySQL Workbench or any other SQL tool |
 | `*-start.sql` | A setup or recovery script for the lesson it is named after |
 
 ## Sections
