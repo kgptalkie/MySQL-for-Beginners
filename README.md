@@ -53,6 +53,7 @@ Explorer.
 | Section 9 | `09 Work with Dates and Employee Service History/S9-00-setup-badge-scans.sql` |
 | Section 18 | `18 Transactions and Consistent Data Changes/S18-01-start.sql` |
 | Section 19 | `19 Views, Indexes, and Checking Query Results/S19-01-start.sql` |
+| Sections 17 to 19, any lesson | `reset/S17-NN-start.sql` (and S18, S19) for that lesson (only if `training_db` no longer matches the video) |
 | Lesson 20.6 | `20 Employee Database Projects and Final Assessment/S20-06-start.sql` |
 
 To run a script in SQL Notebook Studio, right-click the file, choose **Open as SQL Notebook**, check that the notebook
