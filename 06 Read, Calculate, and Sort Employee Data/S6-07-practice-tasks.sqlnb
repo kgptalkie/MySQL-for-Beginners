@@ -1,0 +1,41 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% md
+-- # Practice: Your First Employee Reports
+--
+-- Use only what you know: a column list, AS, arithmetic, DISTINCT, WHERE with =, ORDER BY with ASC or DESC, and LIMIT. If my_db is not on your server, run my_db_setup.sql first.
+
+-- %% sql
+USE my_db;
+
+-- %% md
+-- ## Task 1. List every job title once, from A to Z
+
+-- %% sql
+
+-- %% md
+-- ## Task 2. Monthly pay in Finance, highest first
+--
+-- First name, last name and monthly pay of everyone in department 30. Name the calculated column monthly_pay.
+
+-- %% sql
+
+-- %% md
+-- ## Task 3. The six highest salaries
+--
+-- Employee ID, first name, last name and salary, highest first, with ties broken by last name.
+
+-- %% sql
+
+-- %% md
+-- ## Task 4. The three newest hires
+--
+-- Employee ID, first name, last name and hire date, with ties broken by employee ID, highest first.
+
+-- %% sql
+
+-- %% md
+-- ## Task 5. The five biggest project budgets
+--
+-- Project ID, project name and budget, biggest first.
+
+-- %% sql

@@ -1,0 +1,37 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE training_db;
+
+-- %% sql
+SHOW INDEX FROM badge_log;
+
+-- %% sql
+SELECT COUNT(*) AS scans
+FROM badge_log;
+
+-- %% sql
+SELECT COUNT(*) AS scans
+FROM badge_log
+WHERE employee_id = 1022;
+
+-- %% sql
+CREATE INDEX idx_employee
+ON badge_log (employee_id);
+
+-- %% sql
+SELECT COUNT(*) AS scans
+FROM badge_log
+WHERE employee_id = 1022;
+
+-- %% sql
+SHOW INDEX FROM badge_log;
+
+-- %% sql
+ANALYZE TABLE badge_log;
+
+-- %% sql
+SELECT data_length, index_length
+FROM information_schema.tables
+WHERE table_name = 'badge_log';
+
+-- %% sql

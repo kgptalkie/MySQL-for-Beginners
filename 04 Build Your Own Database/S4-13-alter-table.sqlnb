@@ -1,0 +1,26 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE campus_lab;
+
+-- %% sql
+ALTER TABLE students
+ADD COLUMN country VARCHAR(30);
+
+-- %% sql
+SELECT *
+FROM students;
+
+-- %% sql
+ALTER TABLE students
+RENAME COLUMN country TO home_country;
+
+-- %% sql
+ALTER TABLE students
+MODIFY COLUMN home_country VARCHAR(60);
+
+-- %% sql
+DESCRIBE students;
+
+-- %% sql
+ALTER TABLE students
+DROP COLUMN home_country;

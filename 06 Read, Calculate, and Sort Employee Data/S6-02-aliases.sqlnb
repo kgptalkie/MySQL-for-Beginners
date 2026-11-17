@@ -1,0 +1,19 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% md
+-- ## Report: names and salaries
+
+-- %% sql
+SELECT first_name AS first, last_name AS last, salary_usd AS salary
+FROM employees
+LIMIT 3;
+
+-- %% sql
+SELECT first_name first, last_name last, salary_usd salary
+FROM employees
+LIMIT 3;
+
+-- %% sql
+SELECT first_name AS first, last_name AS last, salary_usd AS salary FROM employees LIMIT 3;

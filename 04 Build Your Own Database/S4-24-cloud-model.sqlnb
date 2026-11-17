@@ -1,0 +1,9 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE campus_lab;
+
+-- %% ai
+-- Show the title and fee of every course
+
+-- %% sql {"generated":true}
+SELECT title, fee_usd FROM courses;

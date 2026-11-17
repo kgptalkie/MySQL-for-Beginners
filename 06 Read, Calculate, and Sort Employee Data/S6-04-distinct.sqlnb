@@ -1,0 +1,27 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT first_name, department_id
+FROM employees
+LIMIT 10;
+
+-- %% sql
+SELECT DISTINCT department_id
+FROM employees;
+
+-- %% sql
+SELECT DISTINCT job_title
+FROM employees
+WHERE department_id = 20;
+
+-- %% sql
+SELECT department_id, job_title
+FROM employees
+WHERE department_id = 30;
+
+-- %% sql
+SELECT DISTINCT department_id, job_title
+FROM employees
+WHERE department_id = 30;

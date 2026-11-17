@@ -1,0 +1,25 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE training_db;
+
+-- %% sql
+SELECT *
+FROM staff
+WHERE employee_id = 1105;
+
+-- %% sql
+SELECT *
+FROM staff
+WHERE employee_id = 1105;
+
+-- %% sql
+UPDATE staff
+SET department_id = 70
+WHERE employee_id = 1139;
+
+-- %% sql
+SELECT *
+FROM staff
+WHERE employee_id = 1139;
+
+-- %% sql

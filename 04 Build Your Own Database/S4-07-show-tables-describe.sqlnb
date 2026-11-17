@@ -1,0 +1,12 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+SHOW TABLES;
+
+-- %% sql
+USE campus_lab;
+
+-- %% sql {"chart":{"type":"bar","x":"Field","y":["Default"]}}
+DESCRIBE students;
+
+-- %% sql
+SHOW CREATE TABLE students;

@@ -1,0 +1,23 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+DESCRIBE badge_scans;
+
+-- %% sql
+SELECT first_name, last_name, hire_date
+FROM employees
+WHERE employee_id = 1036;
+
+-- %% sql
+SELECT scan_id, door, scanned_at, recorded_at
+FROM badge_scans
+WHERE employee_id = 1036;
+
+-- %% sql
+SELECT scan_id, employee_id, scanned_at
+FROM badge_scans
+WHERE scanned_at > '2005-11-30 18:00:00';
+
+-- %% sql

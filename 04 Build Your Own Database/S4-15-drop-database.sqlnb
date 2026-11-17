@@ -1,0 +1,15 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE campus_lab;
+
+-- %% sql
+SHOW DATABASES;
+
+-- %% sql
+DROP DATABASE practice_lab;
+
+-- %% sql
+DROP DATABASE IF EXISTS practice_lab;
+
+-- %% sql
+SHOW WARNINGS;

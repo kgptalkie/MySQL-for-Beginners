@@ -1,0 +1,69 @@
+CREATE DATABASE library_lab;
+
+USE library_lab;
+
+CREATE TABLE members (
+  member_id INT PRIMARY KEY,
+  name VARCHAR(60) NOT NULL,
+  joined_on DATE
+);
+
+CREATE TABLE loans (
+  loan_id INT AUTO_INCREMENT PRIMARY KEY,
+  member_id INT NOT NULL,
+  book_title VARCHAR(80) NOT NULL,
+  loaned_on DATE NOT NULL,
+  days INT NOT NULL DEFAULT 14 CHECK (days > 0),
+  FOREIGN KEY (member_id)
+    REFERENCES members (member_id)
+);
+
+INSERT INTO members
+  (member_id, name, joined_on)
+VALUES
+  (201, 'Leena', '2003-09-01'),
+  (202, 'Maya', '2004-09-01'),
+  (203, 'Rea', '2002-09-02');
+
+INSERT INTO loans
+  (member_id, book_title, loaned_on)
+VALUES
+  (201, 'Database Design Notes', '2004-10-04'),
+  (202, 'Intro to Statistics', '2004-10-05'),
+  (203, 'Web Design Basics', '2004-10-06');
+
+INSERT INTO loans
+  (member_id, book_title, loaned_on, days)
+VALUES
+  (201, 'Intro to Statistics', '2004-10-11', 7);
+
+SELECT *
+FROM members;
+
+SELECT *
+FROM loans;
+
+SELECT book_title, days
+FROM loans
+WHERE member_id = 201;
+
+SELECT *
+FROM loans
+WHERE loan_id = 2;
+
+UPDATE loans
+SET days = 21
+WHERE loan_id = 2;
+
+DELETE FROM loans
+WHERE loan_id = 4;
+
+ALTER TABLE loans
+ADD COLUMN returned_on DATE;
+
+DESCRIBE loans;
+
+INSERT INTO loans
+  (member_id, book_title, loaned_on)
+VALUES
+  (299, 'Web Design Basics', '2004-10-12');

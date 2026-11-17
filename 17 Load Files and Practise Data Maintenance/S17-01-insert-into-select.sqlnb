@@ -1,0 +1,36 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+CREATE DATABASE training_db;
+
+-- %% sql
+USE training_db;
+
+-- %% sql
+CREATE TABLE employee_training (
+    training_id INT AUTO_INCREMENT PRIMARY KEY,
+    employee_id INT NOT NULL,
+    course_name VARCHAR(30) NOT NULL,
+    completed_on DATE,
+    hours INT
+);
+
+-- %% sql
+SELECT employee_id, 'Data Privacy' AS course_name
+FROM my_db.employees
+WHERE department_id = 90;
+
+-- %% sql
+INSERT INTO employee_training
+(employee_id, course_name)
+SELECT employee_id, 'Data Privacy' AS course_name
+FROM my_db.employees
+WHERE department_id = 90;
+
+-- %% sql
+SELECT *
+FROM employee_training;
+
+-- %% sql

@@ -1,0 +1,14 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE campus_lab;
+
+-- %% ai
+-- Show the name and city of every student who joined on 2003-08-01
+
+-- %% sql {"generated":true}
+SELECT name, city
+FROM students
+WHERE joined_on = '2003-08-01';
+
+-- %% sql
+SELECT name FROM students;

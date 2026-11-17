@@ -1,0 +1,35 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT employee_id, first_name, last_name, salary_usd
+FROM employees
+WHERE salary_usd > 150000;
+
+-- %% sql
+SELECT employee_id, first_name, last_name, salary_usd
+FROM employees
+WHERE salary_usd >= 150000;
+
+-- %% sql
+SELECT employee_id, first_name, last_name, salary_usd
+FROM employees
+WHERE salary_usd < 44000
+ORDER BY salary_usd;
+
+-- %% sql
+SELECT *
+FROM departments
+WHERE location <> 'London';
+
+-- %% sql
+SELECT employee_id, first_name, last_name, hire_date
+FROM employees
+WHERE hire_date >= '2005-12-01';
+
+-- %% sql
+SELECT employee_id, first_name, last_name, salary_usd
+FROM employees;
+
+-- %% sql

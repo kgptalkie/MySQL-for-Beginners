@@ -1,0 +1,11 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE campus_lab;
+
+-- %% sql
+CREATE TABLE students (
+    student_id INT PRIMARY KEY,
+    name VARCHAR(60),
+    city VARCHAR(40),
+    joined_on DATE
+);

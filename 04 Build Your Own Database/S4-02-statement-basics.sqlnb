@@ -1,0 +1,11 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+-- Our first comment: MySQL skips this line
+SELECT 'Leena', 101, 1250.00, '2003-08-01';
+
+-- %% sql
+select 'Maya';
+
+-- %% sql
+SELECT 'Rea';
+SELECT 'Sofia';

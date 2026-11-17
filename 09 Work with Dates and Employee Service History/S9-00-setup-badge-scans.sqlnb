@@ -1,0 +1,42 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+-- Section 9 setup: the badge_scans table (run once, after my_db is loaded).
+-- Every time a Sales employee taps a badge at a door, the reader stores
+-- the moment of the scan (scanned_at, a DATETIME) and the moment the
+-- office system recorded it a few seconds later (recorded_at, a TIMESTAMP).
+-- The other tables of my_db do not change.
+USE my_db;
+
+-- %% sql
+CREATE TABLE badge_scans (
+  scan_id INT PRIMARY KEY,
+  employee_id INT NOT NULL,
+  door VARCHAR(20) NOT NULL,
+  scanned_at DATETIME NOT NULL,
+  recorded_at TIMESTAMP NOT NULL,
+  FOREIGN KEY (employee_id)
+    REFERENCES employees (employee_id)
+);
+
+-- %% sql
+INSERT INTO badge_scans
+  (scan_id, employee_id, door, scanned_at, recorded_at)
+VALUES
+  (1, 1036, 'Main entrance', '2005-11-29 08:52:14', '2005-11-29 08:52:19'),
+  (2, 1037, 'Main entrance', '2005-11-29 09:03:40', '2005-11-29 09:03:46'),
+  (3, 1039, 'Main entrance', '2005-11-29 09:11:05', '2005-11-29 09:11:09'),
+  (4, 1044, 'Side door', '2005-11-29 09:26:51', '2005-11-29 09:26:58'),
+  (5, 1045, 'Main entrance', '2005-11-29 10:02:33', '2005-11-29 10:02:37'),
+  (6, 1036, 'Main entrance', '2005-11-30 08:47:09', '2005-11-30 08:47:15'),
+  (7, 1037, 'Side door', '2005-11-30 09:15:27', '2005-11-30 09:15:31'),
+  (8, 1039, 'Main entrance', '2005-11-30 09:20:48', '2005-11-30 09:20:55'),
+  (9, 1044, 'Main entrance', '2005-11-30 09:33:12', '2005-11-30 09:33:18'),
+  (10, 1045, 'Main entrance', '2005-11-30 13:05:44', '2005-11-30 13:05:49'),
+  (11, 1036, 'Side door', '2005-11-30 18:42:10', '2005-11-30 18:42:16'),
+  (12, 1045, 'Main entrance', '2005-11-30 23:47:05', '2005-11-30 23:47:11'),
+  (13, 1036, 'Main entrance', '2005-12-01 08:55:31', '2005-12-01 08:55:36'),
+  (14, 1037, 'Main entrance', '2005-12-01 09:01:58', '2005-12-01 09:02:04'),
+  (15, 1039, 'Side door', '2005-12-01 09:14:20', '2005-12-01 09:14:27'),
+  (16, 1044, 'Main entrance', '2005-12-01 09:29:03', '2005-12-01 09:29:08'),
+  (17, 1045, 'Main entrance', '2005-12-01 10:11:46', '2005-12-01 10:11:52'),
+  (18, 1037, 'Side door', '2005-12-01 17:36:22', '2005-12-01 17:36:29');

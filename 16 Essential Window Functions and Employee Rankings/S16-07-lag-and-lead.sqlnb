@@ -1,0 +1,54 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT effective_from, salary_usd
+FROM salary_history
+WHERE employee_id = 1036
+ORDER BY effective_from;
+
+-- %% sql
+SELECT effective_from, salary_usd,
+LAG(salary_usd) OVER (
+    ORDER BY effective_from, history_id
+) AS prev_salary
+FROM salary_history
+WHERE employee_id = 1036
+ORDER BY effective_from;
+
+-- %% sql
+SELECT effective_from, salary_usd,
+LAG(salary_usd) OVER (
+    ORDER BY effective_from, history_id
+) AS prev_salary,
+LEAD(salary_usd) OVER (
+    ORDER BY effective_from, history_id
+) AS next_salary
+FROM salary_history
+WHERE employee_id = 1036
+ORDER BY effective_from;
+
+-- %% sql
+SELECT effective_from, salary_usd,
+LAG(salary_usd) OVER (
+    ORDER BY effective_from, history_id
+) AS prev_salary,
+salary_usd - LAG(salary_usd) OVER (
+    ORDER BY effective_from, history_id
+) AS raise_usd
+FROM salary_history
+WHERE employee_id = 1036
+ORDER BY effective_from;
+
+-- %% sql
+SELECT employee_id, effective_from, salary_usd,
+salary_usd - LAG(salary_usd) OVER (
+    PARTITION BY employee_id
+    ORDER BY effective_from, history_id
+) AS raise_usd
+FROM salary_history
+WHERE employee_id IN (1036, 1037)
+ORDER BY employee_id, effective_from;
+
+-- %% sql

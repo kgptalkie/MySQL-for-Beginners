@@ -1,0 +1,33 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT first_name, last_name, job_title, salary_usd
+FROM employees
+WHERE department_id = 90;
+
+-- %% sql
+SELECT department_id,
+COUNT(*) AS people,
+ROUND(AVG(salary_usd), 2) AS avg_salary
+FROM employees
+WHERE department_id = 90
+GROUP BY department_id;
+
+-- %% sql
+SELECT first_name, department_id,
+COUNT(*) AS people,
+ROUND(AVG(salary_usd), 2) AS avg_salary
+FROM employees
+WHERE department_id = 90
+GROUP BY department_id;
+
+-- %% sql
+SELECT first_name, salary_usd,
+COUNT(*) OVER () AS people,
+ROUND(AVG(salary_usd) OVER (), 2) AS avg_salary
+FROM employees
+WHERE department_id = 90;
+
+-- %% sql

@@ -1,0 +1,33 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT *
+FROM departments
+ORDER BY department_name;
+
+-- %% sql
+SELECT *
+FROM departments
+ORDER BY location;
+
+-- %% sql
+SELECT employee_id, first_name, last_name, salary_usd
+FROM employees
+ORDER BY salary_usd DESC;
+
+-- %% sql
+SELECT employee_id, first_name, last_name, salary_usd
+FROM employees
+LIMIT 10;
+
+-- %% sql
+SELECT department_id, first_name, last_name, salary_usd
+FROM employees
+ORDER BY department_id, salary_usd DESC;
+
+-- %% sql
+SELECT first_name, last_name, salary_usd / 12 AS monthly_pay
+FROM employees
+ORDER BY monthly_pay DESC;

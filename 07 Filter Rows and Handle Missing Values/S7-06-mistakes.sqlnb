@@ -1,0 +1,41 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT first_name, last_name, job_title, commission_usd
+FROM employees
+WHERE department_id = 50
+AND commission_usd < 1000;
+
+-- %% sql
+SELECT first_name, last_name, job_title, commission_usd
+FROM employees
+WHERE department_id = 50
+AND NOT commission_usd < 1000;
+
+-- %% sql
+SELECT first_name, last_name, job_title, commission_usd
+FROM employees
+WHERE department_id = 50
+AND (commission_usd < 1000 OR commission_usd IS NULL);
+
+-- %% sql
+SELECT employee_id, first_name, last_name
+FROM employees
+WHERE last_name = 'Ibekwe';
+
+-- %% sql
+SELECT employee_id, first_name, last_name, hire_date
+FROM employees
+WHERE hire_date = '2005-12-12';
+
+-- %% sql
+SELECT first_name, last_name, department_id
+FROM employees
+WHERE department_id IN (10, 90);
+
+-- %% sql
+SELECT employee_id, first_name, last_name, salary_usd
+FROM employees
+WHERE salary_usd BETWEEN 150000 AND 165000;

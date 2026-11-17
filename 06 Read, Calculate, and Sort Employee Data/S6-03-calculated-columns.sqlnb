@@ -1,0 +1,23 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT employee_id, first_name, salary_usd, salary_usd / 12 AS monthly_pay
+FROM employees
+LIMIT 5;
+
+-- %% sql
+SELECT employee_id, first_name, salary_usd, salary_usd * 1.05 AS salary_after_raise
+FROM employees
+LIMIT 5;
+
+-- %% sql
+SELECT employee_id, first_name, salary_usd, salary_usd * 1.05 - salary_usd AS raise_amount
+FROM employees
+LIMIT 3;
+
+-- %% sql
+SELECT *
+FROM employees
+LIMIT 1;

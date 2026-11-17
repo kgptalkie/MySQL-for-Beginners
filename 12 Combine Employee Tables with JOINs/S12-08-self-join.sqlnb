@@ -1,0 +1,40 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT employee_id, first_name, manager_id
+FROM employees
+WHERE employee_id IN (1005, 1036, 1037, 1039, 1044, 1045);
+
+-- %% sql
+SELECT e.first_name, m.first_name AS manager
+FROM employees AS e
+INNER JOIN employees AS m
+ON e.manager_id = m.employee_id
+WHERE e.employee_id IN (1005, 1036, 1037, 1039, 1044, 1045);
+
+-- %% sql
+SELECT e.first_name, e.job_title, m.first_name AS manager
+FROM employees AS e
+INNER JOIN employees AS m
+ON e.manager_id = m.employee_id
+WHERE e.employee_id IN (1001, 1005, 1036, 1039);
+
+-- %% sql
+SELECT e.first_name, e.job_title, m.first_name AS manager
+FROM employees AS e
+LEFT JOIN employees AS m
+ON e.manager_id = m.employee_id
+WHERE e.employee_id IN (1001, 1005, 1036, 1039);
+
+-- %% sql
+SELECT m.first_name, COUNT(*) AS reports
+FROM employees AS e
+INNER JOIN employees AS m
+ON e.manager_id = m.employee_id
+WHERE e.department_id = 50
+GROUP BY m.employee_id, m.first_name
+ORDER BY reports DESC;
+
+-- %% sql

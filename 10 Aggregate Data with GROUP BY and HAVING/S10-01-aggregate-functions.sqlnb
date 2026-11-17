@@ -1,0 +1,38 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT first_name, salary_usd
+FROM employees
+WHERE employee_id IN (1005, 1036, 1037, 1039, 1044, 1045);
+
+-- %% sql
+SELECT COUNT(*) AS people,
+SUM(salary_usd) AS payroll
+FROM employees
+WHERE employee_id IN (1005, 1036, 1037, 1039, 1044, 1045);
+
+-- %% sql
+SELECT AVG(salary_usd) AS avg_salary,
+MIN(salary_usd) AS lowest,
+MAX(salary_usd) AS highest
+FROM employees
+WHERE employee_id IN (1005, 1036, 1037, 1039, 1044, 1045);
+
+-- %% sql
+SELECT COUNT(*) AS people,
+SUM(salary_usd) AS payroll,
+ROUND(AVG(salary_usd), 2) AS avg_salary
+FROM employees
+WHERE department_id = 50;
+
+-- %% sql
+SELECT MIN(salary_usd) AS lowest,
+MAX(salary_usd) AS highest,
+MIN(hire_date) AS first_hire,
+MAX(hire_date) AS last_hire
+FROM employees
+WHERE department_id = 50;
+
+-- %% sql

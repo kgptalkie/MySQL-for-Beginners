@@ -1,0 +1,29 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SHOW CREATE TABLE employee_projects;
+
+-- %% sql
+SELECT employee_id, project_id, project_role
+FROM employee_projects
+WHERE project_id = 306;
+
+-- %% sql
+SELECT *
+FROM employee_projects
+WHERE employee_id = 1379;
+
+-- %% sql
+SELECT project_id, project_name
+FROM projects
+WHERE project_id IN (306, 321, 328);
+
+-- %% sql
+SELECT project_id, COUNT(*) AS people
+FROM employee_projects
+WHERE project_id IN (306, 321, 328)
+GROUP BY project_id;
+
+-- %% sql

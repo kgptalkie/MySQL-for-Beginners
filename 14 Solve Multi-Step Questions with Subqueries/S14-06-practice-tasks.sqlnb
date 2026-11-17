@@ -1,0 +1,35 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% md
+-- # Practice: Choose a Suitable Subquery
+--
+-- Use what you know: a subquery in brackets that gives one value, a list for IN, a check with EXISTS or NOT EXISTS, and a derived table in FROM with its own alias. Joins, COUNT, SUM, AVG and GROUP BY from earlier are allowed. One statement per task. Nothing here changes a table. If my_db is not on your server, run my_db_setup.sql first.
+
+-- %% sql
+USE my_db;
+-- %% md
+-- ## Task 1. Above-average earners in Marketing
+--
+-- For Marketing (department 40): first_name, last_name and salary_usd of everyone who earns more than the average salary of the whole company. Do not type the average yourself: let a subquery work it out. Highest salary first.
+
+-- %% sql
+
+-- %% md
+-- ## Task 2. Departments with employees
+--
+-- department_name of every department that has at least one employee. Alphabetical order.
+
+-- %% sql
+
+-- %% md
+-- ## Task 3. Marketing people without a project
+--
+-- For Marketing (department 40): first_name and last_name of everyone who has no row in employee_projects. Order by last_name.
+
+-- %% sql
+
+-- %% md
+-- ## Task 4. Marketing's people, payroll and assignments in one row
+--
+-- One row for Marketing (department 40) with people (how many employees), payroll (their salaries added up) and assignments (their project assignments). Every number must be right: Marketing has 46 people and a payroll of 3066000.00. Remember what joining employee_projects directly did to these numbers.
+
+-- %% sql

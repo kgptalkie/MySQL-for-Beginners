@@ -1,0 +1,45 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+WITH dept_avg AS (
+    SELECT department_id,
+    ROUND(AVG(salary_usd), 2) AS avg_salary
+    FROM employees
+    GROUP BY department_id
+)
+SELECT *
+FROM dept_avg;
+
+-- %% sql
+WITH dept_avg AS (
+    SELECT department_id,
+    ROUND(AVG(salary_usd), 2) AS avg_salary
+    FROM employees
+    GROUP BY department_id
+)
+SELECT *
+FROM dept_avg
+WHERE avg_salary > 70000;
+
+-- %% sql
+WITH dept_avg AS (
+    SELECT department_id,
+    ROUND(AVG(salary_usd), 2) AS avg_salary
+    FROM employees
+    GROUP BY department_id
+)
+SELECT e.first_name, e.salary_usd, da.avg_salary
+FROM employees AS e
+INNER JOIN dept_avg AS da
+ON e.department_id = da.department_id
+WHERE e.employee_id IN (1001, 1005, 1036, 1037,
+    1039, 1044, 1045)
+AND e.salary_usd > da.avg_salary;
+
+-- %% sql
+SELECT *
+FROM dept_avg;
+
+-- %% sql

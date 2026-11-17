@@ -1,0 +1,113 @@
+-- Section 20, lesson 20.6: the challenge schema (a hotel's crew). Writes ONLY to training_db; my_db is not touched.
+DROP DATABASE IF EXISTS training_db;
+
+CREATE DATABASE training_db;
+
+USE training_db;
+
+CREATE TABLE units (
+unit_code CHAR(3) PRIMARY KEY,
+unit_name VARCHAR(40) NOT NULL,
+floor_no INT NOT NULL
+);
+
+CREATE TABLE crew (
+crew_no INT PRIMARY KEY,
+given_name VARCHAR(40) NOT NULL,
+family_name VARCHAR(40) NOT NULL,
+role_title VARCHAR(40) NOT NULL,
+unit_code CHAR(3) NOT NULL,
+lead_no INT NULL,
+start_day DATE NOT NULL,
+month_pay DECIMAL(8,2) NOT NULL,
+FOREIGN KEY (unit_code) REFERENCES units (unit_code),
+FOREIGN KEY (lead_no) REFERENCES crew (crew_no)
+);
+
+CREATE TABLE events (
+event_id INT PRIMARY KEY,
+event_title VARCHAR(40) NOT NULL,
+unit_code CHAR(3) NOT NULL,
+held_on DATE NOT NULL,
+FOREIGN KEY (unit_code) REFERENCES units (unit_code)
+);
+
+CREATE TABLE event_crew (
+event_id INT NOT NULL,
+crew_no INT NOT NULL,
+PRIMARY KEY (event_id, crew_no),
+FOREIGN KEY (event_id) REFERENCES events (event_id),
+FOREIGN KEY (crew_no) REFERENCES crew (crew_no)
+);
+
+CREATE TABLE pay_steps (
+step_id INT PRIMARY KEY,
+crew_no INT NOT NULL,
+month_pay DECIMAL(8,2) NOT NULL,
+valid_from DATE NOT NULL,
+FOREIGN KEY (crew_no) REFERENCES crew (crew_no)
+);
+
+INSERT INTO units VALUES
+('FRD', 'Front Desk', 0),
+('KIT', 'Kitchen', -1),
+('HSK', 'Housekeeping', 1),
+('EVT', 'Events', 2),
+('SPA', 'Spa', 3);
+
+INSERT INTO crew VALUES
+(1, 'Ines', 'Duarte', 'General Manager', 'FRD', NULL, '2003-01-06', 6800.00),
+(2, 'Tomasz', 'Wolny', 'Front Desk Manager', 'FRD', 1, '2003-03-03', 4600.00),
+(3, 'Aiko', 'Mori', 'Receptionist', 'FRD', 2, '2004-04-05', 2900.00),
+(4, 'Femi', 'Adebayo', 'Receptionist', 'FRD', 2, '2004-09-13', 2900.00),
+(5, 'Lucia', 'Ferraz', 'Night Auditor', 'FRD', 2, '2003-11-17', 3100.00),
+(6, 'Ravi', 'Pillai', 'Concierge', 'FRD', 2, '2003-06-02', 3400.00),
+(7, 'Hugo', 'Lindqvist', 'Head Chef', 'KIT', 1, '2003-02-03', 5200.00),
+(8, 'Nadia', 'Haddad', 'Sous Chef', 'KIT', 7, '2003-04-07', 4100.00),
+(9, 'Kofi', 'Asante', 'Line Cook', 'KIT', 8, '2004-02-16', 2800.00),
+(10, 'Elena', 'Petrova', 'Line Cook', 'KIT', 8, '2004-07-12', 2800.00),
+(11, 'Diego', 'Salas', 'Pastry Cook', 'KIT', 8, '2004-01-19', 3000.00),
+(12, 'Mai', 'Tran', 'Kitchen Porter', 'KIT', 8, '2005-03-07', 2400.00),
+(13, 'Joy', 'Nkosi', 'Housekeeping Manager', 'HSK', 1, '2003-05-05', 4100.00),
+(14, 'Pablo', 'Ortiz', 'Room Attendant', 'HSK', 13, '2004-03-01', 2500.00),
+(15, 'Sana', 'Qureshi', 'Room Attendant', 'HSK', 13, '2004-08-02', 2500.00),
+(16, 'Liam', 'Byrne', 'Room Attendant', 'HSK', 13, '2005-02-14', 2500.00),
+(17, 'Yara', 'Nassar', 'Laundry Attendant', 'HSK', 13, '2004-10-04', 2400.00),
+(18, 'Hao', 'Chen', 'Floor Supervisor', 'HSK', 13, '2003-09-15', 3100.00),
+(19, 'Marta', 'Novak', 'Events Manager', 'EVT', 1, '2004-02-02', 4600.00),
+(20, 'Olu', 'Bankole', 'Events Coordinator', 'EVT', 19, '2004-03-15', 3400.00),
+(21, 'Freya', 'Holm', 'Banquet Server', 'EVT', 19, '2004-05-03', 2600.00),
+(22, 'Ken', 'Sato', 'Banquet Server', 'EVT', 19, '2004-11-08', 2600.00),
+(23, 'Isla', 'Grant', 'Banquet Server', 'EVT', 19, '2005-01-17', 2600.00),
+(24, 'Ahmed', 'Saleh', 'AV Technician', 'EVT', 19, '2004-06-21', 3400.00);
+
+INSERT INTO events VALUES
+(501, 'Wedding Banquet', 'EVT', '2005-06-18'),
+(502, 'Book Launch', 'EVT', '2005-07-09'),
+(503, 'Tasting Dinner', 'KIT', '2005-08-20'),
+(504, 'Spa Open Day', 'SPA', '2005-09-03');
+
+INSERT INTO event_crew VALUES
+(501, 7), (501, 8), (501, 9), (501, 19), (501, 20), (501, 21), (501, 22), (501, 23), (501, 24),
+(502, 6), (502, 19), (502, 20), (502, 21), (502, 24),
+(503, 7), (503, 8), (503, 10), (503, 11), (503, 21);
+
+INSERT INTO pay_steps VALUES
+(1, 1, 6000.00, '2003-01-06'), (2, 1, 6400.00, '2004-01-01'), (3, 1, 6800.00, '2005-01-01'),
+(4, 2, 4100.00, '2003-03-03'), (5, 2, 4600.00, '2005-01-01'),
+(6, 3, 2900.00, '2004-04-05'), (7, 4, 2900.00, '2004-09-13'), (8, 5, 3100.00, '2003-11-17'),
+(9, 6, 3100.00, '2003-06-02'), (10, 6, 3400.00, '2005-01-01'),
+(11, 7, 4500.00, '2003-02-03'), (12, 7, 5200.00, '2005-01-01'),
+(13, 8, 3800.00, '2003-04-07'), (14, 8, 4100.00, '2005-01-01'),
+(15, 9, 2800.00, '2004-02-16'), (16, 10, 2800.00, '2004-07-12'), (17, 11, 3000.00, '2004-01-19'),
+(18, 12, 2400.00, '2005-03-07'),
+(19, 13, 3700.00, '2003-05-05'), (20, 13, 4100.00, '2005-01-01'),
+(21, 14, 2500.00, '2004-03-01'), (22, 15, 2500.00, '2004-08-02'), (23, 16, 2500.00, '2005-02-14'),
+(24, 17, 2400.00, '2004-10-04'), (25, 18, 3100.00, '2003-09-15'),
+(26, 19, 4000.00, '2004-02-02'), (27, 19, 4600.00, '2005-01-01'),
+(28, 20, 3000.00, '2004-03-15'), (29, 20, 3400.00, '2005-01-01'),
+(30, 21, 2600.00, '2004-05-03'), (31, 22, 2600.00, '2004-11-08'), (32, 23, 2600.00, '2005-01-17'),
+(33, 24, 3200.00, '2004-06-21'), (34, 24, 3400.00, '2005-01-01');
+
+SELECT COUNT(*) AS crew_rows
+FROM crew;

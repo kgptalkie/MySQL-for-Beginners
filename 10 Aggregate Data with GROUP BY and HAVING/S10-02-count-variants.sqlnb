@@ -1,0 +1,35 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT first_name, job_title, commission_usd
+FROM employees
+WHERE employee_id IN (1005, 1036, 1037, 1039, 1044, 1045);
+
+-- %% sql
+SELECT COUNT(*) AS all_rows,
+COUNT(commission_usd) AS with_commission
+FROM employees
+WHERE employee_id IN (1005, 1036, 1037, 1039, 1044, 1045);
+
+-- %% sql
+SELECT COUNT(job_title) AS titles,
+COUNT(DISTINCT job_title) AS different_titles
+FROM employees
+WHERE employee_id IN (1005, 1036, 1037, 1039, 1044, 1045);
+
+-- %% sql
+SELECT COUNT(*) AS people,
+COUNT(commission_usd) AS with_commission,
+COUNT(DISTINCT department_id) AS departments
+FROM employees;
+
+-- %% sql
+SELECT SUM(commission_usd) AS total,
+AVG(commission_usd) AS avg_paid,
+AVG(COALESCE(commission_usd, 0)) AS avg_all
+FROM employees
+WHERE employee_id IN (1005, 1036, 1037, 1039, 1044, 1045);
+
+-- %% sql

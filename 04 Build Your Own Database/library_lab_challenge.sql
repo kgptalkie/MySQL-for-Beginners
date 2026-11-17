@@ -1,0 +1,51 @@
+-- library_lab: your build challenge
+--
+-- The college library wants a small database.
+-- Build it from nothing in this file,
+-- one statement at a time.
+--
+-- 1. Make a schema called library_lab, select it.
+--
+-- 2. members: one row = one library member
+--    member_id  whole number, the primary key
+--    name       text up to 60, never empty
+--    joined_on  the day the member joined
+--
+-- 3. loans: one row = one book lent to a member
+--    loan_id    whole number MySQL hands out
+--               by itself, the primary key
+--    member_id  who borrowed it; must match an
+--               existing member, never empty
+--    book_title text up to 80, never empty
+--    loaned_on  the day it went out, never empty
+--    days       loan length: 14 unless given,
+--               always above zero
+--
+-- 4. Add these members:
+--    201  Leena  joined 2003-09-01
+--    202  Maya   joined 2004-09-01
+--    203  Rea    joined 2002-09-02
+--
+-- 5. Add these loans (let MySQL number them):
+--    201  Database Design Notes  2004-10-04
+--    202  Intro to Statistics    2004-10-05
+--    203  Web Design Basics      2004-10-06
+--    (those three last 14 days)
+--    201  Intro to Statistics    2004-10-11
+--    (this one lasts 7 days)
+--
+-- 6. Read: every member; every loan; only the
+--    book titles and days of member 201;
+--    the loan with loan_id 2.
+--
+-- 7. Change: loan 2 now lasts 21 days. Check it.
+--
+-- 8. Remove: loan 4 was entered by mistake.
+--    Remove only it, then check what remains.
+--
+-- 9. Alter: loans needs a returned_on column
+--    (a day). Add it and inspect the table.
+--
+-- 10. Prove the link: try to lend a book to
+--     member 299, who does not exist.
+--     MySQL must refuse it.

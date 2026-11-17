@@ -1,0 +1,32 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT employees.first_name, departments.department_name
+FROM employees
+INNER JOIN departments
+ON employees.department_id = departments.department_id
+WHERE employees.employee_id IN (1036, 1039, 1050, 1336);
+
+-- %% sql
+SELECT e.first_name, d.department_name, d.location
+FROM employees AS e
+INNER JOIN departments AS d
+ON e.department_id = d.department_id
+WHERE e.employee_id IN (1036, 1039, 1050, 1336);
+
+-- %% sql
+SELECT COUNT(*) AS joined_rows
+FROM employees AS e
+INNER JOIN departments AS d
+ON e.department_id = d.department_id;
+
+-- %% sql
+SELECT d.department_name, COUNT(*) AS people
+FROM employees AS e
+INNER JOIN departments AS d
+ON e.department_id = d.department_id
+GROUP BY d.department_name;
+
+-- %% sql

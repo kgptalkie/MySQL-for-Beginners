@@ -1,0 +1,49 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+WITH dept_stats AS (
+    SELECT department_id, COUNT(*) AS people,
+    SUM(salary_usd) AS payroll
+    FROM employees
+    GROUP BY department_id
+)
+SELECT *
+FROM dept_stats;
+
+-- %% sql
+WITH dept_stats AS (
+    SELECT department_id, COUNT(*) AS people,
+    SUM(salary_usd) AS payroll
+    FROM employees
+    GROUP BY department_id
+),
+company AS (
+    SELECT SUM(payroll) / SUM(people) AS avg_salary
+    FROM dept_stats
+)
+SELECT *
+FROM company;
+
+-- %% sql
+WITH dept_stats AS (
+    SELECT department_id, COUNT(*) AS people,
+    SUM(salary_usd) AS payroll
+    FROM employees
+    GROUP BY department_id
+),
+company AS (
+    SELECT SUM(payroll) / SUM(people) AS avg_salary
+    FROM dept_stats
+)
+SELECT d.department_name, s.people,
+ROUND(s.payroll / s.people, 2) AS avg_salary
+FROM dept_stats AS s
+INNER JOIN departments AS d
+ON s.department_id = d.department_id
+CROSS JOIN company AS c
+WHERE s.payroll / s.people > c.avg_salary
+ORDER BY avg_salary DESC;
+
+-- %% sql

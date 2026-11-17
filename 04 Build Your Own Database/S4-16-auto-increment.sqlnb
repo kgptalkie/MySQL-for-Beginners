@@ -1,0 +1,20 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE campus_lab;
+
+-- %% sql
+DESCRIBE students;
+
+-- %% sql
+ALTER TABLE students
+MODIFY COLUMN student_id INT NOT NULL AUTO_INCREMENT;
+
+-- %% sql
+INSERT INTO students
+(name, city, joined_on)
+VALUES
+('Maya', 'Lima', '2005-08-01');
+
+-- %% sql
+SELECT *
+FROM students;

@@ -1,0 +1,23 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT *
+FROM departments;
+
+-- %% sql
+SELECT *
+FROM employees
+LIMIT 5;
+
+-- %% sql
+SELECT first_name, last_name, job_title
+FROM employees
+LIMIT 10;
+
+-- %% sql
+SELECT first_name, last_name, salary_usd, commission_usd
+FROM employees
+WHERE department_id = 50
+LIMIT 15;

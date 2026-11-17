@@ -1,0 +1,27 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SHOW TABLES;
+
+-- %% sql
+SELECT employee_id, first_name, department_id
+FROM employees
+WHERE employee_id IN (1005, 1036, 1037, 1039, 1044, 1045);
+
+-- %% sql
+SELECT *
+FROM departments;
+
+-- %% sql
+SELECT COUNT(*) AS people
+FROM employees
+WHERE department_id = 50;
+
+-- %% sql
+SELECT COUNT(*) AS people
+FROM employees
+WHERE department_id = 70;
+
+-- %% sql

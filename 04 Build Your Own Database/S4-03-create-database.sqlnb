@@ -1,0 +1,9 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+SHOW DATABASES;
+
+-- %% sql
+CREATE DATABASE campus_lab;
+
+-- %% sql
+USE campus_lab;

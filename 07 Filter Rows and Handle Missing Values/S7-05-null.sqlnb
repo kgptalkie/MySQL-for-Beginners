@@ -1,0 +1,37 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT first_name, last_name, job_title, commission_usd
+FROM employees
+WHERE department_id = 50;
+
+-- %% sql
+SELECT first_name, last_name, job_title, commission_usd
+FROM employees
+WHERE department_id = 50
+AND commission_usd = NULL;
+
+-- %% sql
+SELECT first_name, last_name, job_title, commission_usd
+FROM employees
+WHERE department_id = 50
+AND commission_usd IS NULL;
+
+-- %% sql
+SELECT first_name, last_name, job_title, commission_usd
+FROM employees
+WHERE department_id = 50
+AND commission_usd IS NOT NULL;
+
+-- %% sql
+SELECT first_name, last_name, job_title, commission_usd
+FROM employees
+WHERE department_id = 50
+AND commission_usd = 0;
+
+-- %% sql
+SELECT project_id, project_name, end_date
+FROM projects
+WHERE end_date IS NULL;

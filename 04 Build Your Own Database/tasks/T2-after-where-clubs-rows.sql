@@ -1,0 +1,42 @@
+-- Practice task after "WHERE with a Primary Key: Find One Record"
+-- (3 to 5 minutes). Needs the clubs table from the first task.
+--
+-- Task: add three clubs in one INSERT:
+--   1  Chess     started 2001-09-10  fee 15.00 USD
+--   2  Drama     started 2003-01-20  fee 25.00 USD
+--   3  Robotics  started 2004-02-02  fee 40.00 USD
+-- Then: read every club; read only the names and fees;
+-- preview just two rows; find the club whose club_id is 2;
+-- predict, then check, what club_id 9 returns.
+--
+-- Solution (try it yourself first):
+
+USE practice_lab;
+
+INSERT INTO clubs
+  (club_id, club_name, founded_on, fee_usd)
+VALUES
+  (1, 'Chess', '2001-09-10', 15.00),
+  (2, 'Drama', '2003-01-20', 25.00),
+  (3, 'Robotics', '2004-02-02', 40.00);
+
+SELECT *
+FROM clubs;
+
+SELECT club_name, fee_usd
+FROM clubs;
+
+SELECT *
+FROM clubs
+LIMIT 2;
+
+SELECT *
+FROM clubs
+WHERE club_id = 2;
+
+SELECT *
+FROM clubs
+WHERE club_id = 9;
+
+-- Expected: the INSERT reports 3 rows affected; club 2 is
+-- Drama; club_id 9 returns no rows and no error.

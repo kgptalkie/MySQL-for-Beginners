@@ -1,0 +1,54 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% md
+-- # Try It: Find Your Way Around the Employee Database
+--
+-- Use only what you know: USE, SHOW TABLES, DESCRIBE, SELECT with a column list, WHERE and LIMIT. If my_db is not on your server, run my_db_setup.sql first.
+
+-- %% md
+-- ## Task 1. Select my_db, then list its tables
+
+-- %% sql
+
+-- %% sql
+
+-- %% md
+-- ## Task 2. Describe the projects table
+--
+-- Which column links a project to the department that owns it?
+
+-- %% sql
+
+-- %% md
+-- ## Task 3. Preview the first five rows of salary_history
+
+-- %% sql
+
+-- %% md
+-- ## Task 4. Find employee 1040
+--
+-- The first name, last name, job title, department number and manager number.
+
+-- %% sql
+
+-- %% md
+-- ## Task 5. Find the name and the city of that department
+--
+-- A second query, using the number you found.
+
+-- %% sql
+
+-- %% md
+-- ## Task 6. Find who manages employee 1040
+--
+-- A third query: the name and the job title.
+
+-- %% sql
+
+-- %% md
+-- ## Task 7. Find the projects employee 1040 works on
+--
+-- Then the name of each project (two queries).
+
+-- %% sql
+
+-- %% sql

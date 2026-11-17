@@ -1,0 +1,24 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT employee_id, first_name, job_title
+FROM employees
+WHERE job_title = 'Sales Manager';
+
+-- %% sql
+SELECT employee_id, project_id, project_role
+FROM employee_projects
+WHERE project_role = 'Lead'
+AND project_id IN (306, 311, 321, 328);
+
+-- %% sql
+SELECT e.employee_id, e.first_name, ep.project_role
+FROM employees AS e
+INNER JOIN employee_projects AS ep
+ON e.employee_id = ep.employee_id
+WHERE e.job_title = 'Sales Manager'
+AND ep.project_role = 'Lead';
+
+-- %% sql

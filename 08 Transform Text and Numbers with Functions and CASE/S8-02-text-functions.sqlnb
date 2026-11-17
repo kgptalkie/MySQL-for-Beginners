@@ -1,0 +1,27 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT employee_id, CONCAT(first_name, ' ', last_name) AS full_name
+FROM employees
+LIMIT 5;
+
+-- %% sql
+SELECT employee_id, CONCAT(UPPER(last_name), ', ', first_name) AS label
+FROM employees
+LIMIT 5;
+
+-- %% sql
+SELECT employee_id, LOWER(CONCAT(first_name, '.', last_name)) AS login
+FROM employees
+LIMIT 5;
+
+-- %% sql
+SELECT CONCAT('|', '  Grace  ', '|') AS raw_text;
+
+-- %% sql
+SELECT CONCAT('|', TRIM('  Grace  '), '|') AS clean_text;
+
+-- %% sql
+SELECT UPPER(TRIM('  grace  ')) AS clean_name;

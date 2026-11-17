@@ -1,0 +1,42 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% md
+-- # Try It: Set Up Check
+-- Six short tasks. Each task is a heading, and the SQL cell under it is where you work.
+
+-- %% md
+-- ## Task 1. Connect
+-- Click the connection at the top right and pick Local MySQL, the connection you tested.
+
+-- %% md
+-- ## Task 2. Hello, SQL!
+-- Run the cell below and read the answer: one column, one row.
+
+-- %% sql
+SELECT 'Hello, SQL!';
+
+-- %% md
+-- ## Task 3. Your own name
+-- Change only the text between the quotes to your own name, then run it.
+
+-- %% sql
+SELECT 'Hello, your name!';
+
+-- %% md
+-- ## Task 4. Three at once
+-- Run this cell with three statements and find all three answers.
+
+-- %% sql
+SELECT 'Step one';
+SELECT 'Step two';
+SELECT 'Step three';
+
+-- %% md
+-- ## Task 5. Fix the error
+-- This statement has a typing mistake. Run it, read the error message and the part after "near", then fix it and run it again.
+
+-- %% sql
+SELCT 'Fix me';
+
+-- %% md
+-- ## Task 6. Save and reopen
+-- Save your work as try-it in Documents\MySQL Course\03 Set Up MySQL, close it, open it again, and run everything once more.

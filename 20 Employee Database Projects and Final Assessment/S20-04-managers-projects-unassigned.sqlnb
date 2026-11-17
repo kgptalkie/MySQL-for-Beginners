@@ -1,0 +1,49 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% md
+-- # Questions 3 and 4: managers, projects and people on no project
+--
+-- Expected (from the plan): direct reports add up to 499 (everyone but the chief executive); 59 people are on no project.
+
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT m.employee_id, m.first_name, m.last_name,
+COUNT(e.employee_id) AS direct_reports
+FROM employees AS m
+JOIN employees AS e
+ON e.manager_id = m.employee_id
+GROUP BY m.employee_id, m.first_name, m.last_name
+ORDER BY direct_reports DESC, m.employee_id;
+
+-- %% sql
+WITH team AS (
+    SELECT m.employee_id, m.first_name, m.last_name,
+COUNT(e.employee_id) AS direct_reports
+FROM employees AS m
+JOIN employees AS e
+ON e.manager_id = m.employee_id
+GROUP BY m.employee_id, m.first_name, m.last_name
+)
+SELECT COUNT(*) AS managers,
+SUM(direct_reports) AS people
+FROM team;
+
+-- %% sql
+SELECT p.project_name,
+COUNT(a.employee_id) AS people
+FROM projects AS p
+LEFT JOIN employee_projects AS a
+ON a.project_id = p.project_id
+GROUP BY p.project_name
+ORDER BY people DESC, p.project_name;
+
+-- %% sql
+SELECT e.employee_id, e.first_name, e.last_name
+FROM employees AS e
+LEFT JOIN employee_projects AS a
+ON a.employee_id = e.employee_id
+WHERE a.employee_id IS NULL
+ORDER BY e.employee_id;
+
+-- %% sql

@@ -1,0 +1,35 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT first_name, hire_date, salary_usd,
+COUNT(*) OVER () AS people,
+COUNT(*) OVER (
+    ORDER BY hire_date, employee_id
+) AS hired_so_far
+FROM employees
+WHERE department_id = 90
+ORDER BY hire_date, employee_id;
+
+-- %% sql
+SELECT first_name, hire_date, salary_usd,
+COUNT(*) OVER () AS people,
+COUNT(*) OVER (
+    ORDER BY hire_date, employee_id
+) AS hired_so_far
+FROM employees
+WHERE department_id = 90
+ORDER BY salary_usd DESC;
+
+-- %% sql
+SELECT first_name, job_title, hire_date,
+COUNT(*) OVER (
+    PARTITION BY job_title
+    ORDER BY hire_date, employee_id
+) AS hired_so_far
+FROM employees
+WHERE department_id = 90
+ORDER BY job_title, hire_date, employee_id;
+
+-- %% sql

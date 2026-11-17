@@ -1,0 +1,21 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT UPPER('grace');
+
+-- %% sql
+SELECT employee_id, first_name, UPPER(first_name) AS name_upper
+FROM employees
+LIMIT 5;
+
+-- %% sql
+SELECT employee_id, first_name, salary_usd / 12 AS monthly_pay
+FROM employees
+LIMIT 5;
+
+-- %% sql
+SELECT employee_id, first_name, salary_usd
+FROM employees
+LIMIT 5;

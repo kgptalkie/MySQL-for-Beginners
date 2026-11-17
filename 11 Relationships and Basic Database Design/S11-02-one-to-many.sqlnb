@@ -1,0 +1,29 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT employee_id, first_name, job_title, department_id
+FROM employees
+WHERE job_title LIKE 'Head of%';
+
+-- %% sql
+DESCRIBE employees;
+
+-- %% sql
+SELECT *
+FROM departments
+WHERE department_id = 90;
+
+-- %% sql
+SELECT employee_id, first_name, job_title, department_id
+FROM employees
+WHERE department_id = 90;
+
+-- %% sql
+SELECT manager_id, COUNT(*) AS reports
+FROM employees
+WHERE department_id = 50
+GROUP BY manager_id;
+
+-- %% sql

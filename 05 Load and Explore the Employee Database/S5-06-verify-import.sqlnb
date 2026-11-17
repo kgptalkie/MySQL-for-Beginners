@@ -1,0 +1,25 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SHOW TABLES;
+
+-- %% sql
+DESCRIBE departments;
+
+-- %% sql
+DESCRIBE employees;
+
+-- %% sql
+SHOW CREATE TABLE employees;
+
+-- %% sql
+SELECT *
+FROM employees
+WHERE employee_id = 1001;
+
+-- %% sql
+SELECT *
+FROM employees
+WHERE employee_id = 1500;

@@ -1,0 +1,39 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT first_name, salary_usd, commission_usd,
+salary_usd + commission_usd AS total_pay
+FROM employees
+WHERE employee_id IN (1005, 1044, 1045);
+
+-- %% sql
+SELECT first_name, commission_usd,
+COALESCE(commission_usd, 0) AS commission
+FROM employees
+WHERE employee_id IN (1005, 1044, 1045);
+
+-- %% sql
+SELECT first_name, salary_usd, commission_usd,
+salary_usd + COALESCE(commission_usd, 0) AS total_pay
+FROM employees
+WHERE employee_id IN (1005, 1044, 1045);
+
+-- %% sql
+SELECT first_name, commission_usd,
+NULLIF(commission_usd, 0) AS real_commission
+FROM employees
+WHERE employee_id IN (1005, 1044, 1045);
+
+-- %% sql
+SELECT first_name, salary_usd, commission_usd,
+ROUND(salary_usd / NULLIF(commission_usd, 0), 1) AS ratio
+FROM employees
+WHERE employee_id IN (1005, 1044, 1045);
+
+-- %% sql
+SELECT project_name, end_date,
+COALESCE(end_date, 'still running') AS finish
+FROM projects
+WHERE department_id = 20;

@@ -1,0 +1,35 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% md
+-- # Practice task
+-- After "Constraint Errors: Diagnose a Duplicate ID
+-- or Missing Parent Record" (2 to 3 minutes). Changes nothing.
+--
+-- **Task:** the college thinks about closing Web Design (course 503).
+-- Try to delete that course. Read the error, find the row that
+-- MySQL is protecting, and say in one sentence why the delete
+-- was refused.
+
+-- %% md
+-- ## Solution (try it yourself first)
+
+-- %% sql
+USE campus_lab;
+
+-- %% sql
+DELETE FROM courses
+WHERE course_id = 503;
+
+-- %% sql
+SELECT *
+FROM enrollments
+WHERE course_id = 503;
+
+-- %% md
+-- Expected: the DELETE is refused with
+-- Cannot delete or update a parent row:
+-- a foreign key constraint fails (`campus_lab`.`enrollments`,
+-- CONSTRAINT `enrollments_ibfk_2` FOREIGN KEY (`course_id`)
+-- REFERENCES `courses` (`course_id`))
+-- The SELECT finds Sofia's enrollment (104, 503): deleting the
+-- course would leave that row pointing at nothing.
+--

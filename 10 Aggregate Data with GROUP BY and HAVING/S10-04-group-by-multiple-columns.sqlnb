@@ -1,0 +1,32 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT job_title, COUNT(*) AS headcount
+FROM employees
+WHERE department_id = 50
+GROUP BY job_title;
+
+-- %% sql
+SELECT department_id, job_title,
+COUNT(*) AS headcount
+FROM employees
+WHERE department_id IN (50, 90)
+GROUP BY department_id, job_title;
+
+-- %% sql
+SELECT department_id, first_name,
+COUNT(*) AS headcount
+FROM employees
+WHERE department_id IN (50, 90)
+GROUP BY department_id;
+
+-- %% sql
+SELECT department_id, COUNT(*) AS headcount,
+MIN(hire_date) AS first_hire
+FROM employees
+WHERE department_id IN (50, 90)
+GROUP BY department_id;
+
+-- %% sql

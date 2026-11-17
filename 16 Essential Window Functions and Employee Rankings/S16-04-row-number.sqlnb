@@ -1,0 +1,48 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT employee_id, first_name, last_name,
+salary_usd,
+ROW_NUMBER() OVER (
+    ORDER BY salary_usd DESC
+) AS salary_pos
+FROM employees
+WHERE manager_id = 1009
+ORDER BY salary_pos;
+
+-- %% sql
+SELECT employee_id, first_name, last_name,
+salary_usd,
+COUNT(*) OVER (PARTITION BY job_title) AS in_title,
+ROW_NUMBER() OVER (
+    ORDER BY salary_usd DESC
+) AS salary_pos
+FROM employees
+WHERE manager_id = 1009
+ORDER BY salary_pos;
+
+-- %% sql
+SELECT employee_id, first_name, last_name,
+salary_usd,
+COUNT(*) OVER (PARTITION BY job_title) AS in_title,
+ROW_NUMBER() OVER (
+    ORDER BY salary_usd DESC, last_name
+) AS salary_pos
+FROM employees
+WHERE manager_id = 1009
+ORDER BY salary_pos;
+
+-- %% sql
+SELECT employee_id, first_name, last_name,
+salary_usd,
+COUNT(*) OVER (PARTITION BY job_title) AS in_title,
+ROW_NUMBER() OVER (
+    ORDER BY salary_usd DESC, employee_id
+) AS salary_pos
+FROM employees
+WHERE manager_id = 1009
+ORDER BY salary_pos;
+
+-- %% sql

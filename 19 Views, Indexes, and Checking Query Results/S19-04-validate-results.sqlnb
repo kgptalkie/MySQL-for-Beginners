@@ -1,0 +1,45 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE training_db;
+
+-- %% sql
+CREATE VIEW assignment_report AS
+SELECT r.employee_id, r.first_name, r.last_name,
+r.department_name, p.project_id
+FROM employee_report AS r
+LEFT JOIN my_db.employee_projects AS p
+ON p.employee_id = r.employee_id;
+
+-- %% sql
+SELECT COUNT(*) AS report_rows,
+COUNT(DISTINCT employee_id) AS people
+FROM assignment_report;
+
+-- %% sql
+SELECT COUNT(*) AS assignments
+FROM my_db.employee_projects;
+
+-- %% sql
+SELECT COUNT(*) AS no_project
+FROM assignment_report
+WHERE project_id IS NULL;
+
+-- %% sql
+SELECT employee_id, project_id, COUNT(*) AS copies
+FROM assignment_report
+GROUP BY employee_id, project_id
+HAVING COUNT(*) > 1;
+
+-- %% sql
+SELECT *
+FROM assignment_report
+WHERE employee_id = 1056
+ORDER BY project_id;
+
+-- %% sql
+SELECT *
+FROM my_db.employee_projects
+WHERE employee_id = 1056
+ORDER BY project_id;
+
+-- %% sql

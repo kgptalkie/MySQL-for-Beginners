@@ -1,0 +1,38 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE training_db;
+
+-- %% sql
+SELECT e.employee_id, e.first_name, e.last_name,
+d.department_name, e.salary_usd
+FROM employee_copy AS e
+JOIN department_copy AS d
+ON d.department_id = e.department_id;
+
+-- %% sql
+CREATE VIEW employee_report AS
+SELECT e.employee_id, e.first_name, e.last_name,
+d.department_name, e.salary_usd
+FROM employee_copy AS e
+JOIN department_copy AS d
+ON d.department_id = e.department_id;
+
+-- %% sql
+SELECT *
+FROM employee_report
+WHERE department_name = 'Legal';
+
+-- %% sql
+SHOW FULL TABLES;
+
+-- %% sql
+UPDATE employee_copy
+SET salary_usd = salary_usd + 5000
+WHERE employee_id = 1162;
+
+-- %% sql
+SELECT *
+FROM employee_report
+WHERE employee_id = 1162;
+
+-- %% sql

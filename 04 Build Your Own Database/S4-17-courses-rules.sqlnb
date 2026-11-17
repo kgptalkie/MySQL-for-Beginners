@@ -1,0 +1,44 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE campus_lab;
+
+-- %% sql
+CREATE TABLE courses (
+    course_id INT PRIMARY KEY,
+    title VARCHAR(60) NOT NULL UNIQUE,
+    fee_usd DECIMAL(8,2) NOT NULL CHECK (fee_usd > 0),
+    seats INT NOT NULL DEFAULT 30
+);
+
+-- %% sql
+DESCRIBE courses;
+
+-- %% sql
+INSERT INTO courses
+(course_id, title, fee_usd)
+VALUES
+(501, 'Databases', 1250.00),
+(502, 'Statistics', 980.00),
+(503, 'Web Design', 1100.00);
+
+-- %% sql
+SELECT *
+FROM courses;
+
+-- %% sql
+INSERT INTO courses
+(course_id, title, fee_usd)
+VALUES
+(504, NULL, 900.00);
+
+-- %% sql
+INSERT INTO courses
+(course_id, title, fee_usd)
+VALUES
+(504, 'Databases', 900.00);
+
+-- %% sql
+INSERT INTO courses
+(course_id, title, fee_usd)
+VALUES
+(504, 'Algebra', -50.00);

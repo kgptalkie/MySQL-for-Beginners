@@ -1,0 +1,33 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% md
+-- ## 1. Make a second schema, only for practice
+
+-- %% sql
+CREATE DATABASE practice_lab;
+
+-- %% md
+-- ## 2. Try to make campus_lab a second time
+
+-- %% sql
+CREATE DATABASE campus_lab;
+
+-- %% sql
+CREATE DATABASE IF NOT EXISTS campus_lab;
+
+-- %% sql
+SHOW WARNINGS;
+
+-- %% md
+-- ## 3. Switch between the two schemas
+
+-- %% sql
+USE practice_lab;
+
+-- %% sql
+USE campus_lab;
+
+-- %% md
+-- ## 4. List every schema on the server
+
+-- %% sql
+SHOW DATABASES;

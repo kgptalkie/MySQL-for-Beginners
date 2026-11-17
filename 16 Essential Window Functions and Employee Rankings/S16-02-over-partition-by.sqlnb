@@ -1,0 +1,32 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT job_title, COUNT(*) AS people,
+ROUND(AVG(salary_usd), 2) AS title_avg
+FROM employees
+WHERE department_id = 90
+GROUP BY job_title
+ORDER BY job_title;
+
+-- %% sql
+SELECT first_name, job_title, salary_usd,
+ROUND(AVG(salary_usd) OVER (
+    PARTITION BY job_title
+), 2) AS title_avg
+FROM employees
+WHERE department_id = 90
+ORDER BY job_title, salary_usd DESC;
+
+-- %% sql
+SELECT first_name, job_title, salary_usd,
+ROUND(AVG(salary_usd) OVER (), 2) AS legal_avg,
+ROUND(AVG(salary_usd) OVER (
+    PARTITION BY job_title
+), 2) AS title_avg
+FROM employees
+WHERE department_id = 90
+ORDER BY job_title, salary_usd DESC;
+
+-- %% sql

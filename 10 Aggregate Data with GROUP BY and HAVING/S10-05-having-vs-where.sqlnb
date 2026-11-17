@@ -1,0 +1,41 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT department_id,
+COUNT(*) AS headcount,
+ROUND(AVG(salary_usd)) AS avg_salary
+FROM employees
+GROUP BY department_id;
+
+-- %% sql
+SELECT department_id
+FROM employees
+WHERE AVG(salary_usd) > 70000
+GROUP BY department_id;
+
+-- %% sql
+SELECT department_id,
+COUNT(*) AS headcount,
+ROUND(AVG(salary_usd)) AS avg_salary
+FROM employees
+GROUP BY department_id
+HAVING AVG(salary_usd) > 70000;
+
+-- %% sql
+SELECT department_id,
+COUNT(*) AS high_earners
+FROM employees
+WHERE salary_usd >= 100000
+GROUP BY department_id;
+
+-- %% sql
+SELECT department_id,
+COUNT(*) AS high_earners
+FROM employees
+WHERE salary_usd >= 100000
+GROUP BY department_id
+HAVING COUNT(*) >= 5;
+
+-- %% sql

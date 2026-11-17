@@ -1,0 +1,11 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+DESCRIBE `my_db`.`employee_projects`;
+
+-- %% sql {"view":"chart","chart":{"type":"bar","x":"project_name","y":["budget_usd"]}}
+SELECT *
+FROM `my_db`.`projects`
+LIMIT 100;

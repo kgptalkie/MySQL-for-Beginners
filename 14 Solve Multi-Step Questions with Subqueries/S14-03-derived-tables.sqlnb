@@ -1,0 +1,35 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT employee_id, COUNT(*) AS projects
+FROM employee_projects
+WHERE employee_id IN (1036, 1039, 1044, 1379)
+GROUP BY employee_id;
+
+-- %% sql
+SELECT e.first_name, e.salary_usd, pc.projects
+FROM employees AS e
+LEFT JOIN (
+    SELECT employee_id, COUNT(*) AS projects
+    FROM employee_projects
+    GROUP BY employee_id
+) AS pc
+ON e.employee_id = pc.employee_id
+WHERE e.employee_id IN (1036, 1039, 1044, 1379);
+
+-- %% sql
+SELECT COUNT(*) AS people,
+SUM(e.salary_usd) AS payroll,
+SUM(pc.projects) AS assignments
+FROM employees AS e
+LEFT JOIN (
+  SELECT employee_id, COUNT(*) AS projects
+  FROM employee_projects
+  GROUP BY employee_id
+) AS pc
+ON e.employee_id = pc.employee_id
+WHERE e.department_id = 50;
+
+-- %% sql

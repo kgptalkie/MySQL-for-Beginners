@@ -1,0 +1,24 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SHOW CREATE TABLE salary_history;
+
+-- %% sql
+SELECT employee_id, COUNT(*) AS salaries
+FROM salary_history
+WHERE employee_id IN (1036, 1037, 1039, 1044)
+GROUP BY employee_id;
+
+-- %% sql
+DESCRIBE badge_scans;
+
+-- %% sql
+SELECT TABLE_NAME, COLUMN_NAME,
+REFERENCED_TABLE_NAME
+FROM information_schema.KEY_COLUMN_USAGE
+WHERE TABLE_SCHEMA = 'my_db'
+AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+-- %% sql

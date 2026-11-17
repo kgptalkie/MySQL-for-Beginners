@@ -1,0 +1,13 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE campus_lab;
+
+-- %% sql
+SELECT *
+FROM students
+WHERE student_id = 103;
+
+-- %% sql
+UPDATE students
+SET city = 'Porto'
+WHERE student_id = 103;

@@ -1,0 +1,29 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT employee_id, first_name, last_name
+FROM employees
+WHERE last_name LIKE 'Ib%';
+
+-- %% sql
+SELECT employee_id, first_name, last_name
+FROM employees
+WHERE last_name LIKE '%ss%';
+
+-- %% sql
+SELECT employee_id, first_name, last_name
+FROM employees
+WHERE first_name LIKE '_ara';
+
+-- %% sql
+SELECT employee_id, first_name, last_name
+FROM employees
+WHERE first_name LIKE '%ara';
+
+-- %% sql
+SELECT first_name, last_name, job_title
+FROM employees
+WHERE department_id = 20
+AND job_title NOT LIKE '%Engineer%';

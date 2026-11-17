@@ -1,0 +1,9 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+SELECT 'Hello, SQL!';
+
+-- %% sql
+SELECT 'Second line';
+
+-- %% sql
+SELECT 'Third line';

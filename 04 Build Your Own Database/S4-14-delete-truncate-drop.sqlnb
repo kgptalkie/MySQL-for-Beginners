@@ -1,0 +1,33 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE practice_lab;
+
+-- %% sql
+CREATE TABLE students_copy (
+  student_id INT PRIMARY KEY,
+  name VARCHAR(60),
+  city VARCHAR(40)
+);
+INSERT INTO students_copy
+  (student_id, name, city)
+VALUES
+  (101, 'Leena', 'Toronto'),
+  (102, 'Maya', 'Nairobi'),
+  (103, 'Rea', 'Porto');
+
+-- %% sql
+DELETE FROM students_copy
+WHERE student_id = 103;
+
+-- %% sql
+SELECT *
+FROM students_copy;
+
+-- %% sql
+TRUNCATE TABLE students_copy;
+
+-- %% sql
+DROP TABLE students_copy;
+
+-- %% sql
+USE campus_lab;

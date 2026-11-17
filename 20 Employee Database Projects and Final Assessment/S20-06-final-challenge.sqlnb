@@ -1,0 +1,40 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% md
+-- # Final challenge: a new crew database
+--
+-- A hotel keeps its staff in training_db, in five tables: units, crew, events, event_crew and pay_steps. The names are new on purpose, so read the tables before you write any report. Answer each question in its own cell, add one check to each answer, and finish with two or three sentences of findings. The solutions come in the next lesson: solve these first. If training_db does not hold these tables, run S20-06-start.sql first.
+--
+-- 1. Headcount and monthly payroll for every unit, including a unit with nobody in it.
+-- 2. How many crew members fall into each pay band: under 3000, 3000 to 3999.99, and 4000 and over.
+-- 3. How many people each lead has directly under them. Check the total.
+-- 4. How many crew members work each event, with every event listed, and which crew members work no event.
+-- 5. The units ranked by average monthly pay.
+-- 6. The third-highest monthly pay level, and everyone paid at that level.
+-- 7. The biggest single pay increase in pay_steps, and whose it was.
+
+-- %% sql
+USE training_db;
+
+-- %% sql
+SHOW TABLES;
+
+-- %% sql
+DESCRIBE crew;
+
+-- %% sql
+SELECT *
+FROM units;
+
+-- %% sql
+SELECT *
+FROM crew
+WHERE crew_no <= 6;
+
+-- %% sql
+SELECT *
+FROM event_crew
+WHERE crew_no = 21;
+
+-- %% sql
+
+-- %% sql

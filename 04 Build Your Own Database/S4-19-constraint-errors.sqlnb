@@ -1,0 +1,35 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE campus_lab;
+
+-- %% sql
+INSERT INTO students
+(student_id, name, city, joined_on)
+VALUES
+(103, 'Rea', 'Lisbon', '2002-08-05');
+
+-- %% sql
+SELECT *
+FROM students
+WHERE student_id = 103;
+
+-- %% sql
+INSERT INTO enrollments
+(student_id, course_id)
+VALUES
+(101, 520);
+
+-- %% sql
+SELECT *
+FROM courses;
+
+-- %% sql
+INSERT INTO enrollments
+(student_id, course_id)
+VALUES
+(101, 502);
+
+-- %% sql
+SELECT *
+FROM enrollments
+WHERE student_id = 101;

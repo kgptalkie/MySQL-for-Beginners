@@ -1,0 +1,32 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE training_db;
+
+-- %% sql
+SELECT employee_id, first_name, last_name
+FROM employee_copy
+WHERE last_name = 'Ibekwe';
+
+-- %% sql
+EXPLAIN
+SELECT employee_id, first_name, last_name
+FROM employee_copy
+WHERE last_name = 'Ibekwe';
+
+-- %% sql
+CREATE INDEX idx_last_name
+ON employee_copy (last_name);
+
+-- %% sql
+EXPLAIN
+SELECT employee_id, first_name, last_name
+FROM employee_copy
+WHERE last_name = 'Ibekwe';
+
+-- %% sql
+EXPLAIN
+SELECT employee_id, first_name, last_name
+FROM employee_copy
+WHERE last_name LIKE '%kwe';
+
+-- %% sql

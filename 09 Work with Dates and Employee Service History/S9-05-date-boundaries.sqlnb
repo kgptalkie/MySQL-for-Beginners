@@ -1,0 +1,39 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT first_name, last_name, hire_date
+FROM employees
+WHERE department_id = 50
+AND hire_date BETWEEN '2005-11-01' AND '2005-11-30';
+
+-- %% sql
+SELECT scan_id, employee_id, scanned_at
+FROM badge_scans
+WHERE scanned_at BETWEEN '2005-11-01' AND '2005-11-30';
+
+-- %% sql
+SELECT scan_id, employee_id, scanned_at
+FROM badge_scans
+WHERE scanned_at = '2005-11-30';
+
+-- %% sql
+SELECT scan_id, employee_id, scanned_at
+FROM badge_scans
+WHERE scanned_at >= '2005-11-01'
+AND scanned_at < '2005-12-01';
+
+-- %% sql
+SELECT scan_id, employee_id, scanned_at
+FROM badge_scans
+WHERE scanned_at >= '2005-11-30'
+AND scanned_at < DATE_ADD('2005-11-30', INTERVAL 1 DAY);
+
+-- %% sql
+SELECT scan_id, scanned_at, recorded_at
+FROM badge_scans
+WHERE recorded_at >= '2005-12-01'
+AND recorded_at < '2005-12-02';
+
+-- %% sql

@@ -1,0 +1,32 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT COUNT(*) AS hired_2005
+FROM employees
+WHERE hire_date >= '2005-01-01';
+
+-- %% sql
+SELECT department_id, COUNT(*) AS headcount
+FROM employees
+WHERE hire_date >= '2005-01-01'
+GROUP BY department_id
+HAVING COUNT(*) >= 20
+ORDER BY headcount DESC
+LIMIT 3;
+
+-- %% sql
+SELECT first_name, last_name,
+salary_usd / 12 AS monthly_pay
+FROM employees
+WHERE monthly_pay > 12000;
+
+-- %% sql
+SELECT first_name, last_name,
+salary_usd / 12 AS monthly_pay
+FROM employees
+WHERE salary_usd / 12 > 12000
+ORDER BY monthly_pay DESC;
+
+-- %% sql

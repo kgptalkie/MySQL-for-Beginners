@@ -1,0 +1,16 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE campus_lab;
+
+-- %% sql
+SELECT *
+FROM students;
+
+-- %% sql
+SELECT name, city
+FROM students;
+
+-- %% sql
+SELECT name, city
+FROM students
+LIMIT 3;

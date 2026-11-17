@@ -1,0 +1,33 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT *
+FROM employees
+WHERE employee_id = 1007;
+
+-- %% sql
+SELECT *
+FROM departments
+WHERE department_id = 30;
+
+-- %% sql
+SELECT *
+FROM employees
+WHERE employee_id = 1003;
+
+-- %% sql
+SELECT *
+FROM employee_projects
+WHERE employee_id = 1007;
+
+-- %% sql
+SELECT *
+FROM projects
+WHERE project_id = 301;
+
+-- %% sql
+SELECT *
+FROM employees
+WHERE department_id = 70;

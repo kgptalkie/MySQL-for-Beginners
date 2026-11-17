@@ -1,0 +1,28 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT first_name, last_name, department_id, salary_usd
+FROM employees
+WHERE department_id IN (10, 90);
+
+-- %% sql
+SELECT first_name, last_name, job_title
+FROM employees
+WHERE job_title IN ('Paralegal', 'Legal Counsel');
+
+-- %% sql
+SELECT *
+FROM departments
+WHERE location NOT IN ('London', 'Berlin', 'Dublin');
+
+-- %% sql
+SELECT employee_id, first_name, last_name, salary_usd
+FROM employees
+WHERE salary_usd BETWEEN 150000 AND 165000;
+
+-- %% sql
+SELECT employee_id, first_name, last_name, hire_date
+FROM employees
+WHERE hire_date BETWEEN '2000-01-01' AND '2000-03-31';

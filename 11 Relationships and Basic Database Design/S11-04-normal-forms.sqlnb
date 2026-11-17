@@ -1,0 +1,28 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT employee_id, project_id, project_role
+FROM employee_projects
+WHERE employee_id = 1050;
+
+-- %% sql
+DESCRIBE projects;
+
+-- %% sql
+SELECT project_id, project_name, department_id
+FROM projects
+WHERE department_id = 60;
+
+-- %% sql
+SELECT department_id, department_name, location
+FROM departments
+WHERE department_id = 60;
+
+-- %% sql
+SELECT COUNT(*) AS sheet_rows
+FROM employee_projects
+WHERE project_id IN (307, 322);
+
+-- %% sql

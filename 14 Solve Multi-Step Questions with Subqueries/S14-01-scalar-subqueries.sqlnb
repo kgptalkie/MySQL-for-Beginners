@@ -1,0 +1,33 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT AVG(salary_usd) AS company_avg
+FROM employees;
+
+-- %% sql
+SELECT first_name, last_name, salary_usd
+FROM employees
+WHERE manager_id = 1036
+AND salary_usd > 71986;
+
+-- %% sql
+SELECT first_name, last_name, salary_usd
+FROM employees
+WHERE manager_id = 1036
+AND salary_usd > (
+    SELECT AVG(salary_usd)
+    FROM employees
+);
+
+-- %% sql
+SELECT first_name
+FROM employees
+WHERE salary_usd > (
+    SELECT AVG(salary_usd)
+    FROM employees
+    GROUP BY department_id
+);
+
+-- %% sql

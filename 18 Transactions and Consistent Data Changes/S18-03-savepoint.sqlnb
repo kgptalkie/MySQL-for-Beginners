@@ -1,0 +1,51 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE training_db;
+
+-- %% sql
+START TRANSACTION;
+
+-- %% sql
+UPDATE staff
+SET department_id = 70
+WHERE employee_id = 1077;
+
+-- %% sql
+INSERT INTO transfer_log
+(employee_id, from_dept, to_dept, moved_on)
+VALUES (1077, 20, 70, '2005-12-01');
+
+-- %% sql
+SAVEPOINT carla_moved;
+
+-- %% sql
+UPDATE staff
+SET department_id = 70
+WHERE department_id = 20;
+
+-- %% sql
+ROLLBACK TO SAVEPOINT carla_moved;
+
+-- %% sql
+SELECT *
+FROM staff
+WHERE department_id = 70;
+
+-- %% sql
+UPDATE staff
+SET department_id = 70
+WHERE employee_id = 1091;
+
+-- %% sql
+INSERT INTO transfer_log
+(employee_id, from_dept, to_dept, moved_on)
+VALUES (1091, 20, 70, '2005-12-01');
+
+-- %% sql
+COMMIT;
+
+-- %% sql
+SELECT *
+FROM transfer_log;
+
+-- %% sql

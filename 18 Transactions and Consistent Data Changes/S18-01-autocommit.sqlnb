@@ -1,0 +1,40 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE training_db;
+
+-- %% sql
+SELECT @@autocommit;
+
+-- %% sql
+SELECT *
+FROM staff;
+
+-- %% sql
+UPDATE staff
+SET department_id = 70
+WHERE employee_id = 1016;
+
+-- %% sql
+INSERT INTO transfer_log
+(employee_id, from_dept, to_dept)
+VALUES (1016, 20, 70);
+
+-- %% sql
+SELECT *
+FROM staff
+WHERE department_id = 70;
+
+-- %% sql
+SELECT *
+FROM transfer_log;
+
+-- %% sql
+INSERT INTO transfer_log
+(employee_id, from_dept, to_dept, moved_on)
+VALUES (1016, 20, 70, '2005-12-01');
+
+-- %% sql
+SELECT *
+FROM transfer_log;
+
+-- %% sql

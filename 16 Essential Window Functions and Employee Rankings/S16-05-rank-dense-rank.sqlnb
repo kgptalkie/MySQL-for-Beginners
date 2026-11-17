@@ -1,0 +1,28 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% sql
+USE my_db;
+
+-- %% sql
+SELECT first_name, last_name, salary_usd,
+RANK() OVER (ORDER BY salary_usd DESC) AS place
+FROM employees
+WHERE job_title = 'Sales Coordinator'
+ORDER BY salary_usd DESC, employee_id;
+
+-- %% sql
+SELECT first_name, last_name, salary_usd,
+RANK() OVER (ORDER BY salary_usd DESC) AS place,
+DENSE_RANK() OVER (ORDER BY salary_usd DESC) AS tier
+FROM employees
+WHERE job_title = 'Sales Coordinator'
+ORDER BY salary_usd DESC, employee_id;
+
+-- %% sql
+SELECT first_name, last_name, salary_usd,
+RANK() OVER (ORDER BY salary_usd DESC) AS place,
+DENSE_RANK() OVER (ORDER BY salary_usd DESC) AS tier
+FROM employees
+WHERE job_title = 'Data Engineer'
+ORDER BY salary_usd DESC, employee_id;
+
+-- %% sql

@@ -1,0 +1,49 @@
+-- sqlnb v1 {"connection":"Local MySQL"}
+-- %% md
+-- # Practice task
+-- After "ALTER TABLE: Add, Rename, Modify, and Drop a Column"
+-- (3 to 4 minutes). Needs the clubs table.
+--
+-- **Task:** add a column meets_on (text up to 10 characters), see
+-- what the existing rows hold in it, rename it to meeting_day,
+-- give it room for 20 characters, describe the table, then
+-- drop the column again.
+
+-- %% md
+-- ## Solution (try it yourself first)
+
+-- %% sql
+USE practice_lab;
+
+-- %% sql
+ALTER TABLE clubs
+ADD COLUMN meets_on VARCHAR(10);
+
+-- %% sql
+SELECT *
+FROM clubs;
+
+-- %% sql
+ALTER TABLE clubs
+RENAME COLUMN meets_on TO meeting_day;
+
+-- %% sql
+ALTER TABLE clubs
+MODIFY COLUMN meeting_day VARCHAR(20);
+
+-- %% sql
+DESCRIBE clubs;
+
+-- %% sql
+ALTER TABLE clubs
+DROP COLUMN meeting_day;
+
+-- %% md
+-- Expected: after the ADD, every row shows NULL in meets_on;
+
+-- %% md
+-- DESCRIBE shows meeting_day as varchar(20); after the DROP,
+-- clubs has its four columns again.
+-- practice_lab, with this table in it, is removed later in
+-- "DROP DATABASE: Remove Only a Disposable Practice Schema".
+--
